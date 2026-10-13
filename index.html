@@ -745,22 +745,5 @@
 
 <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
 <!-- auto-deploy test -->
-<script>
-(function(){
-  var PAGE_ID = '114908233392569';
-  var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-  if (!isMobile) return;
-  document.querySelectorAll('a[href*="m.me/"]').forEach(function(a){
-    a.addEventListener('click', function(e){
-      e.preventDefault();
-      var webUrl = a.href;
-      // Try the native app first
-      window.location.href = 'fb-messenger://user/' + PAGE_ID;
-      // If the app isn't installed, fall back to the web link
-      setTimeout(function(){ window.location.href = webUrl; }, 1200);
-    });
-  });
-})();
-</script>
 </body>
 </html>
