@@ -22,6 +22,15 @@
   src="https://www.facebook.com/tr?id=1114382607995509&ev=PageView&noscript=1"
   /></noscript>
   <!-- End Meta Pixel Code -->
+  <!-- Google tag (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H59PKC0WZ4"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H59PKC0WZ4');
+  </script>
+  <!-- End Google tag (GA4) -->
   <script>
   // Remarketing events: Messenger clicks = Contact, Request-a-Call clicks = high-intent lead signal.
   // (Actual form submissions fire a Lead event on success — see the callback-form handler below.)
@@ -58,6 +67,7 @@
           : "Thanks — your request was sent. I'll be reaching out soon.";
         form.innerHTML = '<p class="form-status">' + message + '</p>';
         if (window.fbq) fbq('track', 'Lead');
+        if (window.gtag) gtag('event', 'generate_lead');
       }).catch(function () {
         form.submit();
       });
