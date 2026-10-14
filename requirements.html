@@ -80,6 +80,7 @@
     .cta { text-align: center; margin-top: 24px; }
     .cta a { display: inline-block; background: #f5be19; color: #0e1519; text-decoration: none; font-weight: 800; padding: 15px 30px; border-radius: 8px; font-size: 17px; }
     .cta .msg { display: block; margin-top: 14px; color: #d7dee0; font-size: 15px; }
+    .cta-alt { text-align: center; margin: 14px 0 22px; color: #d7dee0; font-size: 15px; }
     .email-box { background: #0e1519; border: 1px solid #2a383e; border-radius: 10px; padding: 16px; margin-top: 18px; }
     .email-box input[type="email"] { width: 100%; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #2a383e; background: #162126; color: #fff; margin: 10px 0; }
     .disclaimer { color: #9fb0b5; font-size: 13.5px; line-height: 1.55; margin-top: 26px; }
@@ -217,6 +218,8 @@
     html += '<div class="row"><div class="k">' + onHookLabel + '</div><div class="v">' + valOrNotSet(st.on_hook, st.confidence) + '</div></div>';
     html += '<div class="row"><div class="k">Filings</div><div class="v">' + valOrNotSet(st.filings, st.confidence) + '</div></div>';
     html += '</div>';
+    html += '<div class="email-box"><strong>Email me these results</strong><p class="note">Optional — we\u2019ll send this summary to your inbox and follow up with a quote.</p><form id="email-form"><input type="email" id="email-addr" placeholder="Your email" required /><button class="btn" type="submit">Email my results</button><p class="hint" id="email-status"></p></form></div>';
+    html += '<p class="cta-alt">Or <a href="/#quote">get a quote for this coverage</a> — tell us your state and whether you\u2019re on rotation and we\u2019ll build the policy to match.</p>';
     if (st.class_variation) html += '<p class="note"><strong>Weight / class variation:</strong> ' + esc(st.class_variation) + '</p>';
     if (st.notes) html += '<p class="note">' + esc(st.notes) + '</p>';
 
@@ -248,9 +251,6 @@
       st.source_urls.forEach(function (u) { html += '<a href="' + esc(u) + '" target="_blank" rel="noopener">Source &rarr;</a>'; });
       html += '</div>';
     }
-
-    html += '<div class="cta"><a href="/#quote">Get a quote for this coverage</a><span class="msg">Tell us your state and whether you\u2019re on rotation — we\u2019ll build the policy to match.</span></div>';
-    html += '<div class="email-box"><strong>Email me these results</strong><p class="note">Optional — we\u2019ll send this summary to your inbox and follow up with a quote.</p><form id="email-form"><input type="email" id="email-addr" placeholder="Your email" required /><button class="btn" type="submit">Email my results</button><p class="hint" id="email-status"></p></form></div>';
 
     // Plain-text summary of exactly what was shown, for the email.
     function txt(v, conf) { return (v == null || v === "") ? (conf === "verified" ? "No statewide minimum — your city/county or rotation agreement may still set one" : "No statewide minimum found — your city/county or rotation agreement may still set one") : String(v); }
