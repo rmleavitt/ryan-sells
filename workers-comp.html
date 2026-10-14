@@ -31,6 +31,7 @@
   .email-box input[type="email"] { width: 100%; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #2a383e; background: #162126; color: #fff; margin: 10px 0; }
   .btn { display: block; width: 100%; margin-top: 18px; background: #f5be19; color: #0e1519; border: 0; border-radius: 8px; padding: 15px; font-size: 17px; font-weight: 800; cursor: pointer; }
   .hint { color: #9fb0b5; font-size: 14px; margin-top: 6px; }
+  .cta-alt { text-align: center; margin: 14px 0 22px; color: #d7dee0; font-size: 15px; }
   .warning-banner { background: #2b1d07; border: 1px solid #6b5216; border-left: 4px solid #f5be19; padding: 12px 14px; border-radius: 10px; font-size: 0.95rem; margin-bottom: 16px; }
   .empty { color: #9fb0b5; font-style: italic; }
   footer { color: #9fb0b5; font-size: 0.85rem; margin-top: 24px; }
@@ -116,7 +117,7 @@ function render() {
     + section('Workers\u2019 comp at a glance', s.summary)
     + section('Workers\u2019 comp detail', s.detail)
     + section('Independent contractor test (workers\u2019 comp)', s.ic)
-    + '<div class="email-box"><strong>Email me these results</strong><p class="note">Optional \u2014 we\u2019ll send this summary to your inbox and follow up with a quote.</p><form id="email-form"><input type="email" id="email-addr" placeholder="Your email" required /><button class="btn" type="submit">Email my results</button><p class="hint" id="email-status"></p></form></div>';
+    + '<div class="email-box"><strong>Email me these results</strong><p class="note">Optional \u2014 we\u2019ll send this summary to your inbox and follow up with a quote.</p><form id="email-form"><input type="email" id="email-addr" placeholder="Your email" required /><button class="btn" type="submit">Email my results</button><p class="hint" id="email-status"></p></form></div>' + '<p class="cta-alt">Or <a href="/#quote">get a quote for this coverage</a> — tell us your state and how many employees you have and we’ll build the policy to match.</p>';
   var eform = document.getElementById('email-form');
   if (eform) {
     eform.addEventListener('submit', function(ev) {
