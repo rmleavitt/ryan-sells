@@ -211,8 +211,6 @@
     html += '<div class="card">';
     html += '<div class="row"><div class="k">Auto liability</div><div class="v">' + valOrNotSet(st.auto_liability, st.confidence) + '</div></div>';
     html += '<div class="row"><div class="k">On-hook (in-tow)</div><div class="v">' + valOrNotSet(st.on_hook, st.confidence) + '</div></div>';
-    html += '<div class="row"><div class="k">Garagekeepers</div><div class="v">' + valOrNotSet(st.garagekeepers, st.confidence) + '</div></div>';
-    html += '<div class="row"><div class="k">Cargo</div><div class="v">' + valOrNotSet(st.cargo, st.confidence) + '</div></div>';
     html += '<div class="row"><div class="k">Filings</div><div class="v">' + valOrNotSet(st.filings, st.confidence) + '</div></div>';
     html += '</div>';
     if (st.class_variation) html += '<p class="note"><strong>Weight / class variation:</strong> ' + esc(st.class_variation) + '</p>';
@@ -253,7 +251,7 @@
     // Plain-text summary of exactly what was shown, for the email.
     function txt(v, conf) { return (v == null || v === "") ? (conf === "verified" ? "No statewide minimum — your city/county or rotation agreement may still set one" : "No statewide minimum found — your city/county or rotation agreement may still set one") : String(v); }
     currentStateName = NAMES[code];
-    currentSummary = "Your tow truck insurance requirements — " + NAMES[code] + "\n\nState minimums:\n- Auto liability: " + txt(st.auto_liability, st.confidence) + "\n- On-hook: " + txt(st.on_hook, st.confidence) + "\n- Garagekeepers: " + txt(st.garagekeepers, st.confidence) + "\n- Cargo: " + txt(st.cargo, st.confidence) + "\n- Filings: " + txt(st.filings, st.confidence) + "\n";
+    currentSummary = "Your tow truck insurance requirements — " + NAMES[code] + "\n\nState minimums:\n- Auto liability: " + txt(st.auto_liability, st.confidence) + "\n- On-hook: " + txt(st.on_hook, st.confidence) + "\n- Filings: " + txt(st.filings, st.confidence) + "\n";
     if (st.notes) currentSummary += "\nNotes: " + st.notes + "\n";
     if (scope === "interstate") currentSummary += "\nFederal (interstate): " + (gvwr === "over" ? "$750,000" : "$300,000") + " public liability (for-hire, nonhazardous property).\n";
     if (rotation === "yes") currentSummary += "\nPolice rotation typically adds: auto liability commonly $1,000,000 CSL; on-hook/cargo $50,000–$100,000; garagekeepers $50,000–$500,000; general liability $1,000,000–$2,000,000. Rotation terms are set by your local agreement — confirm exact limits with the agency.\n";
