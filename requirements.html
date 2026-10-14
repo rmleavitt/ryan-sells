@@ -183,7 +183,7 @@
   function esc(s) {
     return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
-  function valOrNotSet(v, what) {
+  function valOrNotSet(v, conf) {
     if (v == null || v === "") return conf === "verified" ? '<em>No statewide minimum — your city/county or rotation agreement may still set one</em>' : '<em>No statewide minimum found — your city/county or rotation agreement may still set one</em>';
     return esc(v);
   }
