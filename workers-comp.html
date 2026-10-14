@@ -27,6 +27,10 @@
   details summary { font-weight: 700; cursor: pointer; font-size: 1rem; }
   details summary::-webkit-details-marker { color: #9fb0b5; }
   .note { color: #d7dee0; font-size: 0.9rem; }
+  .email-box { background: #0e1519; border: 1px solid #2a383e; border-radius: 10px; padding: 16px; margin-top: 18px; }
+  .email-box input[type="email"] { width: 100%; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #2a383e; background: #162126; color: #fff; margin: 10px 0; }
+  .btn { display: block; width: 100%; margin-top: 18px; background: #f5be19; color: #0e1519; border: 0; border-radius: 8px; padding: 15px; font-size: 17px; font-weight: 800; cursor: pointer; }
+  .hint { color: #9fb0b5; font-size: 14px; margin-top: 6px; }
   .warning-banner { background: #2b1d07; border: 1px solid #6b5216; border-left: 4px solid #f5be19; padding: 12px 14px; border-radius: 10px; font-size: 0.95rem; margin-bottom: 16px; }
   .empty { color: #9fb0b5; font-style: italic; }
   footer { color: #9fb0b5; font-size: 0.85rem; margin-top: 24px; }
@@ -89,15 +93,51 @@ function section(title, pairs) {
   }).join('');
   return '<div class="card"><h2>' + title + '</h2><dl>' + rows + '</dl></div>';
 }
+function stripTags(h) { var t = document.createElement('div'); t.innerHTML = h; return (t.textContent || '').trim(); }
+function summarySection(title, pairs) {
+  var out = '\n' + title + ':\n';
+  pairs.forEach(function(p){ out += '- ' + stripTags(p.label) + ': ' + stripTags(p.value) + '\n'; });
+  return out;
+}
+var currentSummary = '';
+var currentStateName = '';
 function render() {
   var ab = sel.value;
   var box = document.getElementById('results');
   if (!ab) { box.innerHTML = '<p class="empty">Select a state above to see its requirements.</p>'; return; }
   var s = DATA.states[ab];
+  currentStateName = s.name;
+  currentSummary = "Your workers\u2019 comp requirements \u2014 " + s.name + "\n"
+    + summarySection('Workers\u2019 comp at a glance', s.summary)
+    + summarySection('Workers\u2019 comp detail', s.detail)
+    + summarySection('Independent contractor test (workers\u2019 comp)', s.ic)
+    + "\nInformational only \u2014 not legal advice or a quote. Get a quote: https://ryan-sells-insurance.pages.dev/#quote";
   box.innerHTML = '<h2 style="font-size:1.3rem;margin:4px 0 12px;">' + s.name + '</h2>'
-    + section('Workers’ comp at a glance', s.summary)
-    + section('Workers’ comp detail', s.detail)
-    + section('Independent contractor test (workers’ comp)', s.ic);
+    + section('Workers\u2019 comp at a glance', s.summary)
+    + section('Workers\u2019 comp detail', s.detail)
+    + section('Independent contractor test (workers\u2019 comp)', s.ic)
+    + '<div class="email-box"><strong>Email me these results</strong><p class="note">Optional \u2014 we\u2019ll send this summary to your inbox and follow up with a quote.</p><form id="email-form"><input type="email" id="email-addr" placeholder="Your email" required /><button class="btn" type="submit">Email my results</button><p class="hint" id="email-status"></p></form></div>';
+  var eform = document.getElementById('email-form');
+  if (eform) {
+    eform.addEventListener('submit', function(ev) {
+      ev.preventDefault();
+      var addr = document.getElementById('email-addr').value.trim();
+      var status = document.getElementById('email-status');
+      if (!addr) return;
+      var fd = new FormData();
+      fd.append('email', addr);
+      fd.append('results_summary', currentSummary);
+      fd.append('_subject', 'Workers\u2019 comp tool: results for ' + currentStateName);
+      fd.append('_template', 'table');
+      fd.append('_captcha', 'false');
+      fd.append('_honey', '');
+      fd.append('_autoresponse', currentSummary + '\n\nWant a quote built to these requirements? Reply to this email or message us on Messenger: https://m.me/114908233392569');
+      status.textContent = 'Sending\u2026';
+      fetch('https://formsubmit.co/RLeavitt@robertsonryan.com', { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } })
+        .then(function(r){ if (!r.ok) throw new Error('send failed'); status.textContent = 'Sent \u2014 check your inbox for your results.'; })
+        .catch(function(){ status.textContent = 'Could not send. Try again, or message us on Messenger.'; });
+    });
+  }
 }
 sel.addEventListener('change', render);
 render();
