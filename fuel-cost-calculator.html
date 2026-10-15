@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Tow Truck Fuel Cost & Cost-Per-Tow Calculator — Ryan Sells Insurance</title>
+  <meta name="description" content="Figure out your fuel cost per mile, monthly fuel spend, and fuel cost per tow. Enter your diesel price, MPG, miles, and tows." />
+  <link rel="canonical" href="https://ryansellsinsurance.com/fuel-cost-calculator.html" />
+<!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1114382607995509');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1114382607995509&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  <!-- Google tag (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H59PKCQWZ4"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-H59PKCQWZ4');
+  </script>
+  <!-- End Google tag (GA4) -->
+  <!-- TikTok Pixel Code Start -->
+  <script>
+  !function (w, d, t) {
+    w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+    ttq.load('DB7FSL3C77U2CDFHJE00');
+    ttq.page();
+  }(window, document, 'ttq');
+  </script>
+  <!-- TikTok Pixel Code End -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate fuel cost per tow?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide your monthly fuel spend by your monthly tow count. Monthly fuel spend = (miles driven divided by MPG) times the diesel price per gallon."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What MPG does a tow truck get?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Roughly 12-18 mpg for light-duty wreckers and 6-10 mpg for heavy-duty, depending on load, idle time, and terrain. Enter your truck's real number for an accurate result."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this a quote?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. This tool is informational only — not legal advice or a quote."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #0e1519; color: #ffffff; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; padding: 0 0 48px; }
+    a { color: #f5be19; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 20px 18px 0; }
+    .back { display: inline-block; margin-bottom: 14px; color: #d7dee0; text-decoration: none; font-size: 15px; }
+    h1 { font-size: 30px; line-height: 1.15; margin: 0 0 8px; }
+    h1 span { color: #f5be19; }
+    .sub { color: #d7dee0; font-size: 17px; line-height: 1.5; margin: 0 0 22px; }
+    .tool-link { margin: -8px 0 22px; font-size: 16px; }
+    .tool-link a { color: #f5be19; font-weight: 700; text-decoration: none; }
+    .card { background: #162126; border: 1px solid #2a383e; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    label { display: block; font-weight: 700; margin: 14px 0 6px; font-size: 15px; }
+    label:first-child { margin-top: 0; }
+    input[type="number"] { width: 100%; padding: 13px 12px; font-size: 16px; border-radius: 8px; border: 1px solid #2a383e; background: #0e1519; color: #fff; }
+    .btn { display: block; width: 100%; margin-top: 18px; background: #f5be19; color: #0e1519; border: 0; border-radius: 8px; padding: 15px; font-size: 17px; font-weight: 800; cursor: pointer; }
+    #results { display: none; }
+    #results h2 { font-size: 22px; margin: 22px 0 10px; }
+    #results h2 span { color: #f5be19; }
+    .row { display: flex; justify-content: space-between; gap: 14px; padding: 11px 0; border-bottom: 1px solid #2a383e; font-size: 16px; line-height: 1.4; }
+    .row:last-child { border-bottom: 0; }
+    .row .k { color: #d7dee0; flex: 0 0 42%; }
+    .row .v { text-align: right; font-weight: 700; }
+    .row.big .v { color: #f5be19; font-size: 20px; }
+    .note { color: #d7dee0; font-size: 15px; line-height: 1.55; margin: 10px 0 0; }
+    .email-box { background: #0e1519; border: 1px solid #2a383e; border-radius: 10px; padding: 16px; margin-top: 18px; }
+    .email-box input[type="email"] { width: 100%; padding: 12px; font-size: 16px; border-radius: 8px; border: 1px solid #2a383e; background: #162126; color: #fff; margin: 10px 0; }
+    .disclaimer { color: #9fb0b5; font-size: 13.5px; line-height: 1.55; margin-top: 26px; }
+    .hint { color: #9fb0b5; font-size: 14px; margin-top: 6px; }
+    .cta-alt { text-align: center; margin: 14px 0 22px; color: #d7dee0; font-size: 15px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="/">&larr; Back to Ryan Sells Insurance</a>
+    <h1>Fuel Cost &amp; <span>Cost Per Tow</span></h1>
+    <p class="sub">Diesel is your biggest variable cost. Enter your real numbers and see what each tow actually costs you in fuel.</p>
+    <p class="tool-link"><a href="/requirements.html">Check your state&rsquo;s tow insurance minimums &rarr;</a><br /><a href="/coverage-quiz.html">What coverage do I need? Take the quiz &rarr;</a></p>
+
+    <div class="card">
+      <label for="price">Diesel price per gallon ($)</label>
+      <input type="number" id="price" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 6.18" />
+      <p class="hint">The EIA national average was $6.18/gal for the week ending Oct 12, 2026 &mdash; enter your local pump price for your real number.</p>
+
+      <label for="mpg">Your truck&rsquo;s MPG</label>
+      <input type="number" id="mpg" inputmode="decimal" min="0" step="0.1" placeholder="e.g. 10" />
+      <p class="hint">Light-duty wreckers typically run 12&ndash;18 mpg; heavy-duty 6&ndash;10. Use your truck&rsquo;s real number if you know it.</p>
+
+      <label for="miles">Miles driven per month</label>
+      <input type="number" id="miles" inputmode="numeric" min="0" step="1" placeholder="e.g. 4000" />
+
+      <label for="tows">Tows completed per month</label>
+      <input type="number" id="tows" inputmode="numeric" min="0" step="1" placeholder="e.g. 100" />
+
+      <button class="btn" id="calc">Calculate my fuel cost</button>
+    </div>
+
+    <div id="results"></div>
+
+    <p class="disclaimer">Informational only &mdash; not legal advice and not a quote. Results are estimates from the numbers you enter.</p>
+  </div>
+
+  <script>
+  var currentSummary = "";
+
+  function money(n) {
+    return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  document.getElementById("calc").addEventListener("click", function () {
+    var price = parseFloat(document.getElementById("price").value);
+    var mpg = parseFloat(document.getElementById("mpg").value);
+    var miles = parseFloat(document.getElementById("miles").value);
+    var tows = parseFloat(document.getElementById("tows").value);
+    if (!(price > 0) || !(mpg > 0) || !(miles > 0) || !(tows > 0)) {
+      alert("Please enter a number greater than zero in every field.");
+      return;
+    }
+    var perMile = price / mpg;
+    var gallons = miles / mpg;
+    var monthly = gallons * price;
+    var perTow = monthly / tows;
+    var annual = monthly * 12;
+
+    var out = document.getElementById("results");
+    var html = "";
+    html += '<h2>Your <span>fuel numbers</span></h2>';
+    html += '<div class="card">';
+    html += '<div class="row"><div class="k">Fuel cost per mile</div><div class="v">' + money(perMile) + '</div></div>';
+    html += '<div class="row"><div class="k">Gallons per month</div><div class="v">' + gallons.toLocaleString("en-US", { maximumFractionDigits: 0 }) + ' gal</div></div>';
+    html += '<div class="row"><div class="k">Monthly fuel cost</div><div class="v">' + money(monthly) + '</div></div>';
+    html += '<div class="row big"><div class="k">Fuel cost per tow</div><div class="v">' + money(perTow) + '</div></div>';
+    html += '<div class="row"><div class="k">Annual fuel cost</div><div class="v">' + money(annual) + '</div></div>';
+    html += '</div>';
+    html += '<p class="note">Every dollar of fuel per tow comes straight off the job. If your per-tow fuel cost is climbing, it is worth checking whether your rates have kept up &mdash; and whether your insurance is still priced for the operation you run today.</p>';
+    html += '<div class="email-box"><strong>Email me these results</strong><p class="note">Optional &mdash; we&rsquo;ll send this summary to your inbox and follow up with a quote.</p><form id="email-form"><input type="email" id="email-addr" placeholder="Your email" required /><button class="btn" type="submit">Email my results</button><p class="hint" id="email-status"></p></form></div>';
+    html += '<p class="cta-alt">Or <a href="/#quote">get a quote</a> &mdash; tell us about your operation and we&rsquo;ll build the policy to match.</p>';
+
+    // Plain-text summary of exactly what was shown, for the email.
+    currentSummary = "Your fuel cost results — Ryan Sells Insurance\n\nYour numbers:\n- Diesel price: $" + price.toFixed(2) + "/gal\n- MPG: " + mpg + "\n- Miles per month: " + miles + "\n- Tows per month: " + tows + "\n\nResults:\n- Fuel cost per mile: " + money(perMile) + "\n- Gallons per month: " + gallons.toLocaleString("en-US", { maximumFractionDigits: 0 }) + " gal\n- Monthly fuel cost: " + money(monthly) + "\n- Fuel cost per tow: " + money(perTow) + "\n- Annual fuel cost: " + money(annual) + "\n\nInformational only — not legal advice or a quote. Get a quote: https://ryansellsinsurance.com/#quote";
+
+    out.innerHTML = html;
+    var eform = document.getElementById("email-form");
+    if (eform) {
+      eform.addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        var addr = document.getElementById("email-addr").value.trim();
+        var status = document.getElementById("email-status");
+        if (!addr) return;
+        var fd = new FormData();
+        fd.append("email", addr);
+        fd.append("results_summary", currentSummary);
+        fd.append("_subject", "Fuel cost calculator: your results");
+        fd.append("_template", "table");
+        fd.append("_captcha", "false");
+        fd.append("_honey", "");
+        fd.append("_autoresponse", currentSummary + "\n\nWant a quote built around your operation? Reply to this email or message us on Messenger: https://m.me/114908233392569");
+        status.textContent = "Sending…";
+        fetch("https://formsubmit.co/RLeavitt@robertsonryan.com", { method: "POST", body: fd, headers: { "Accept": "application/json" } })
+          .then(function (r) { if (!r.ok) throw new Error("send failed"); status.textContent = "Sent — check your inbox for your results."; })
+          .catch(function () { status.textContent = "Could not send. Try again, or message us on Messenger."; });
+      });
+    }
+    out.style.display = "block";
+    out.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  </script>
+</body>
+</html>
