@@ -50,15 +50,24 @@
     h1 { font-size: 34px; line-height: 1.1; margin: 0 0 12px; }
     h1 span { color: #f5be19; }
     p { font-size: 18px; line-height: 1.5; margin: 0 0 8px; color: #d7dee0; }
-    a { display: inline-block; margin-top: 24px; color: #0e1519; background: #f5be19; text-decoration: none; font-weight: 700; padding: 14px 28px; border-radius: 6px; }
+    a.msg-btn { display: inline-block; margin-top: 20px; color: #fff; background: #0866ff; text-decoration: none; font-weight: 700; padding: 14px 28px; border-radius: 6px; }
+    a.msg-btn:hover { background: #0055d8; }
+    a.msg-btn .messenger-icon { width: 20px; height: 20px; vertical-align: -4px; margin-right: 8px; fill: currentColor; }
+    a.back-link { display: inline-block; margin-top: 24px; color: #d7dee0; background: none; text-decoration: underline; font-size: 15px; font-weight: 400; padding: 0; }
+    .msg-note { font-size: 15px; color: #d7dee0; margin-top: 10px; }
+    .want-faster { margin-top: 24px; }
   </style>
 </head>
 <body>
   <main>
-    <h1>Thanks — <span>we got it.</span></h1>
+    <h1>Thanks — <span>we got it. ✅</span></h1>
     <p>We'll call you back shortly.</p>
     <p>Gracias — te llamaremos en breve.</p>
-    <a href="/">Back to Ryan Sells Insurance</a>
+    <p class="want-faster">Want a faster answer?</p>
+    <a class="msg-btn" href="https://m.me/114908233392569"><svg class="messenger-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0Zm1.193 14.963-3.056-3.259-5.963 3.259L10.733 8l3.13 3.259L19.754 8l-6.561 6.963Z"/></svg>Message us on Messenger</a>
+    <p class="msg-note">Typically responds within 15 minutes.</p>
+    <p>¿Prefieres escribirnos? Envíanos un mensaje en Messenger.</p>
+    <a class="back-link" href="/">← Back to Ryan Sells Insurance</a>
   </main>
 </body>
 </html>
