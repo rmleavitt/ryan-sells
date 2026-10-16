@@ -105,10 +105,17 @@
     .disclaimer { color: #9fb0b5; font-size: 13.5px; line-height: 1.55; margin-top: 26px; }
     .hint { color: #9fb0b5; font-size: 14px; margin-top: 6px; }
     .cta-alt { text-align: center; margin: 14px 0 22px; color: #d7dee0; font-size: 15px; }
+    .lang-toggle { text-align: right; margin-bottom: 8px; font-size: 14px; }
+    .lang-toggle a { color: #d7dee0; text-decoration: none; padding: 4px 10px; border: 1px solid #2a383e; border-radius: 6px; display: inline-block; }
+    .lang-toggle a.active { color: #f5be19; border-color: #f5be19; font-weight: 700; }
+    .btn-msg { display: block; text-align: center; background: #0866ff; color: #ffffff; text-decoration: none; border-radius: 8px; padding: 15px; font-size: 17px; font-weight: 800; margin-top: 18px; }
+    .msg-sub { text-align: center; color: #9fb0b5; font-size: 14px; margin: 8px 0 0; }
+    .msg-cta { margin-top: 18px; }
   </style>
 </head>
 <body>
   <div class="wrap">
+    <div class="lang-toggle"><a href="?lang=en" id="lang-en">EN</a> <a href="?lang=es" id="lang-es">ES</a></div>
     <a class="back" href="/">&larr; Back to Ryan Sells Insurance</a>
     <h1>Police Rotation <span>Readiness Checklist</span></h1>
     <p class="sub">Check off what you already have. We&rsquo;ll show what&rsquo;s still missing before you apply &mdash; so the agency doesn&rsquo;t find the gaps first.</p>
@@ -148,6 +155,100 @@
   </div>
 
   <script>
+  var LANG = (new URLSearchParams(window.location.search).get('lang') === 'es') ? 'es' : 'en';
+  var ES = {
+    "← Back to Ryan Sells Insurance": "← Volver a Ryan Sells Insurance",
+    "Police Rotation": "Lista de verificación de preparación para",
+    "Readiness Checklist": "rotación policial",
+    "Check off what you already have. We’ll show what’s still missing before you apply — so the agency doesn’t find the gaps first.": "Marca lo que ya tienes. Te mostraremos lo que aún falta antes de solicitar — para que la agencia no encuentre los huecos primero.",
+    "Check your state’s tow insurance minimums →": "Consulta los mínimos de seguro para grúas de tu estado →",
+    "What coverage do I need? Take the quiz →": "¿Qué cobertura necesito? Haz el quiz →",
+    "Insurance": "Seguro",
+    "Business & legal": "Negocio y legal",
+    "Equipment & operations": "Equipo y operaciones",
+    "Paperwork ready to submit": "Documentación lista para enviar",
+    "Commercial auto liability — commonly $1,000,000 combined single limit (agency requirements range $750,000–$3,000,000)": "Responsabilidad civil para autos comerciales — comúnmente $1,000,000 límite único combinado (los requisitos de las agencias van de $750,000 a $3,000,000)",
+    "On-hook / cargo — typically $50,000–$100,000": "On-hook / carga — típicamente $50,000–$100,000",
+    "Garagekeepers — typically $50,000–$500,000": "Garagekeepers — típicamente $50,000–$500,000",
+    "General liability — typically $1,000,000–$2,000,000": "Responsabilidad civil general — típicamente $1,000,000–$2,000,000",
+    "Workers’ comp — statutory coverage for your employees": "Compensación laboral — cobertura estatutaria para tus empleados",
+    "Agency named as additional insured, with certificate + advance cancellation notice": "Agencia nombrada como asegurado adicional, con certificado y aviso anticipado de cancelación",
+    "Business registered + tow business license / permit for your city or county": "Negocio registrado + licencia / permiso de remolque para tu ciudad o condado",
+    "DOT number / operating authority, if your operation requires it": "Número DOT / autoridad operativa, si tu operación lo requiere",
+    "Driver roster — licensed drivers with clean records (background checks if your agency requires them)": "Lista de conductores — conductores con licencia y antecedentes limpios (verificación de antecedentes si tu agencia lo exige)",
+    "Trucks meet agency equipment standards (class, winch, lights, safety gear)": "Los camiones cumplen los estándares de equipo de la agencia (clase, cabrestante, luces, equipo de seguridad)",
+    "24/7 availability — you can meet the agency’s response-time requirement": "Disponibilidad 24/7 — puedes cumplir el requisito de tiempo de respuesta de la agencia",
+    "Secure impound lot / storage yard for towed vehicles": "Corralón seguro / patio de almacenamiento para vehículos remolcados",
+    "Certificate of insurance (COI) ready to submit": "Certificado de seguro (COI) listo para enviar",
+    "Business license, permits, vehicle registrations, and inspections on hand": "Licencia de negocio, permisos, registros de vehículos e inspecciones a la mano",
+    "Agency’s rotation application completed": "Solicitud de rotación de la agencia completada",
+    "Get my readiness report": "Obtener mi informe de preparación",
+    "Informational only — not legal advice and not a quote. Rotation is a local contract, not state law: these are the typical terms from real rotation agreements. Your agency’s agreement controls — confirm its exact requirements before you apply.": "Solo informativo — no es asesoría legal ni cotización. La rotación es un contrato local, no ley estatal: estos son los términos típicos de acuerdos de rotación reales. El acuerdo de tu agencia manda — confirma sus requisitos exactos antes de solicitar.",
+    " of ": " de ",
+    " ready": " listos",
+    "You’re": "Estás",
+    "ready to apply": "listo para solicitar",
+    "Every item on the checklist is covered. Next step: submit your application and COI to the agency — and confirm its exact limits and terms before you sign, since the agreement controls.": "Todos los puntos de la lista están cubiertos. Siguiente paso: envía tu solicitud y COI a la agencia — y confirma sus límites y términos exactos antes de firmar, ya que el acuerdo manda.",
+    "item still needed": "punto aún falta",
+    "items still needed": "puntos aún faltan",
+    "Already ready": "Ya listos",
+    "Commercial auto liability — commonly $1,000,000 CSL": "Responsabilidad civil para autos comerciales — comúnmente $1,000,000 CSL",
+    "On-hook / cargo — typically $50,000–$100,000": "On-hook / carga — típicamente $50,000–$100,000",
+    "Garagekeepers — typically $50,000–$500,000": "Garagekeepers — típicamente $50,000–$500,000",
+    "General liability — typically $1,000,000–$2,000,000": "Responsabilidad civil general — típicamente $1,000,000–$2,000,000",
+    "Workers' comp — statutory": "Compensación laboral — estatutaria",
+    "Agency named as additional insured + certificate + cancellation notice": "Agencia nombrada como asegurado adicional + certificado + aviso de cancelación",
+    "Business registered + tow license / permit": "Negocio registrado + licencia / permiso de remolque",
+    "DOT number / operating authority": "Número DOT / autoridad operativa",
+    "Driver roster — licensed, clean records": "Lista de conductores — con licencia, antecedentes limpios",
+    "Trucks meet agency equipment standards": "Los camiones cumplen los estándares de equipo de la agencia",
+    "24/7 availability / response time": "Disponibilidad 24/7 / tiempo de respuesta",
+    "Secure impound lot / storage yard": "Corralón seguro / patio de almacenamiento",
+    "Certificate of insurance (COI) ready": "Certificado de seguro (COI) listo",
+    "License, permits, registrations, inspections on hand": "Licencia, permisos, registros, inspecciones a la mano",
+    "Rotation application completed": "Solicitud de rotación completada",
+    "Rotation is a local contract, not state law. These are typical terms from real rotation agreements — your agency’s agreement controls. Confirm its exact requirements before you apply.": "La rotación es un contrato local, no ley estatal. Estos son términos típicos de acuerdos de rotación reales — el acuerdo de tu agencia manda. Confirma sus requisitos exactos antes de solicitar.",
+    "Want this in your inbox?": "¿Quieres esto en tu bandeja de entrada?",
+    "Optional — we’ll send this summary to your inbox and follow up with a quote.": "Opcional — te enviaremos este resumen a tu correo y daremos seguimiento con una cotización.",
+    "Your email": "Tu correo electrónico",
+    "Email my report": "Enviarme mi informe",
+    "Or": "O",
+    "get a quote": "consigue una cotización",
+    " — tell us what your operation does and we’ll build the policy to match.": " — dinos qué hace tu operación y diseñaremos la póliza a tu medida.",
+    "Message Ryan — help me close these {N} gaps": "Escríbele a Ryan — ayúdame a cerrar estos {N} huecos",
+    "Send me your list and I'll tell you what each missing item costs to fix.": "Envíame tu lista y te diré lo que cuesta corregir cada punto faltante.",
+    "Message Ryan — get the policy that gets your application approved.": "Escríbele a Ryan — consigue la póliza que apruebe tu solicitud.",
+    "Typically responds within 15 minutes": "Normalmente responde en 15 minutos",
+    "Sending…": "Enviando…",
+    "Sent — check your inbox for your report.": "Enviado — revisa tu bandeja de entrada para ver tu informe.",
+    "Could not send. Try again, or message us on Messenger.": "No se pudo enviar. Inténtalo de nuevo o escríbenos por Messenger.",
+    "Rotation checklist: your readiness report": "Lista de rotación: tu informe de preparación",
+    "\n\nWant a quote built around your operation? Reply to this email or message us on Messenger: https://m.me/114908233392569": "\n\n¿Quieres una cotización diseñada para tu operación? Responde a este correo o escríbenos por Messenger: https://m.me/114908233392569",
+    "Police Rotation Checklist for Tow Truck Operators — Ryan Sells Insurance": "Lista de verificación de preparación para rotación policial — Ryan Sells Insurance"
+  };
+  function T(s) { return (LANG === 'es' && ES[s]) ? ES[s] : s; }
+  function walkTranslate(root) {
+    if (LANG !== 'es') return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    var node, nodes = [];
+    while ((node = walker.nextNode())) {
+      var tag = node.parentNode && node.parentNode.tagName;
+      if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') continue;
+      nodes.push(node);
+    }
+    nodes.forEach(function (n) {
+      var v = n.nodeValue, key = v.trim();
+      if (key && ES[key]) n.nodeValue = v.replace(key, ES[key]);
+    });
+  }
+  if (LANG === 'es') {
+    document.documentElement.lang = 'es';
+    document.title = T("Police Rotation Checklist for Tow Truck Operators — Ryan Sells Insurance");
+    document.getElementById('lang-es').className = 'active';
+  } else {
+    document.getElementById('lang-en').className = 'active';
+  }
+  walkTranslate(document.body);
   var LABELS = {
     "ins-auto": "Commercial auto liability — commonly $1,000,000 CSL",
     "ins-onhook": "On-hook / cargo — typically $50,000–$100,000",
@@ -173,11 +274,12 @@
   }
   function updateProgress() {
     var n = document.querySelectorAll('input[name="item"]:checked').length;
-    document.getElementById("progress").innerHTML = "<span>" + n + " of " + TOTAL + "</span> ready";
+    document.getElementById("progress").innerHTML = "<span>" + n + T(" of ") + TOTAL + "</span>" + T(" ready");
   }
   document.querySelectorAll('input[name="item"]').forEach(function (el) {
     el.addEventListener("change", updateProgress);
   });
+  updateProgress();
 
   document.getElementById("report").addEventListener("click", function () {
     var checked = [];
@@ -188,22 +290,27 @@
     var out = document.getElementById("results");
     var html = "";
     if (!missing.length) {
-      html += '<h2>You&rsquo;re <span>ready to apply</span></h2>';
-      html += '<p class="note">Every item on the checklist is covered. Next step: submit your application and COI to the agency &mdash; and confirm its exact limits and terms before you sign, since the agreement controls.</p>';
+      html += '<h2>' + T('You’re') + ' <span>' + T('ready to apply') + '</span></h2>';
+      html += '<p class="note">' + T('Every item on the checklist is covered. Next step: submit your application and COI to the agency — and confirm its exact limits and terms before you sign, since the agreement controls.') + '</p>';
     } else {
-      html += '<h2><span>' + missing.length + ' item' + (missing.length === 1 ? '' : 's') + ' still needed</span></h2>';
+      html += '<h2><span>' + missing.length + ' ' + (missing.length === 1 ? T('item still needed') : T('items still needed')) + '</span></h2>';
       html += '<div class="card">';
-      missing.forEach(function (v) { html += '<div class="item missing">&#10007; ' + esc(LABELS[v]) + '</div>'; });
+      missing.forEach(function (v) { html += '<div class="item missing">&#10007; ' + esc(T(LABELS[v])) + '</div>'; });
       html += '</div>';
     }
     if (checked.length) {
-      html += '<h3>Already ready</h3><div class="card">';
-      checked.forEach(function (v) { html += '<div class="item">&#10003; ' + esc(LABELS[v]) + '</div>'; });
+      html += '<h3>' + T('Already ready') + '</h3><div class="card">';
+      checked.forEach(function (v) { html += '<div class="item">&#10003; ' + esc(T(LABELS[v])) + '</div>'; });
       html += '</div>';
     }
-    html += '<p class="note">Rotation is a local contract, not state law. These are typical terms from real rotation agreements &mdash; your agency&rsquo;s agreement controls. Confirm its exact requirements before you apply.</p>';
-    html += '<div class="email-box"><strong>Email me this report</strong><p class="note">Optional &mdash; we&rsquo;ll send this summary to your inbox and follow up with a quote.</p><form id="email-form"><input type="email" id="email-addr" placeholder="Your email" required /><button class="btn" type="submit">Email my report</button><p class="hint" id="email-status"></p></form></div>';
-    html += '<p class="cta-alt">Or <a href="/#quote">get a quote</a> &mdash; tell us what your operation does and we&rsquo;ll build the policy to match.</p>';
+    html += '<p class="note">' + T('Rotation is a local contract, not state law. These are typical terms from real rotation agreements — your agency’s agreement controls. Confirm its exact requirements before you apply.') + '</p>';
+    if (!missing.length) {
+      html += '<div class="msg-cta"><a class="btn-msg" href="https://m.me/114908233392569" target="_blank" rel="noopener">' + T('Message Ryan — get the policy that gets your application approved.') + '</a><p class="msg-sub">' + T('Typically responds within 15 minutes') + '</p></div>';
+    } else {
+      html += '<div class="msg-cta"><a class="btn-msg" href="https://m.me/114908233392569" target="_blank" rel="noopener">' + T('Message Ryan — help me close these {N} gaps').replace('{N}', missing.length) + '</a><p class="msg-sub">' + T("Send me your list and I'll tell you what each missing item costs to fix.") + '</p><p class="msg-sub">' + T('Typically responds within 15 minutes') + '</p></div>';
+    }
+    html += '<p class="cta-alt">' + T('Or') + ' <a href="/#quote">' + T('get a quote') + '</a>' + T(' — tell us what your operation does and we’ll build the policy to match.') + '</p>';
+    html += '<div class="email-box"><strong>' + T('Want this in your inbox?') + '</strong><p class="note">' + T('Optional — we’ll send this summary to your inbox and follow up with a quote.') + '</p><form id="email-form"><input type="email" id="email-addr" placeholder="' + T('Your email') + '" required /><button class="btn" type="submit">' + T('Email my report') + '</button><p class="hint" id="email-status"></p></form></div>';
 
     // Plain-text summary of exactly what was shown, for the email.
     currentSummary = "Your police rotation readiness report — Ryan Sells Insurance\n\nReady (" + checked.length + " of " + TOTAL + "):\n";
@@ -223,15 +330,15 @@
         var fd = new FormData();
         fd.append("email", addr);
         fd.append("results_summary", currentSummary);
-        fd.append("_subject", "Rotation checklist: your readiness report");
+        fd.append("_subject", T("Rotation checklist: your readiness report"));
         fd.append("_template", "table");
         fd.append("_captcha", "false");
         fd.append("_honey", "");
-        fd.append("_autoresponse", currentSummary + "\n\nWant a quote built around your operation? Reply to this email or message us on Messenger: https://m.me/114908233392569");
-        status.textContent = "Sending…";
+        fd.append("_autoresponse", currentSummary + T("\n\nWant a quote built around your operation? Reply to this email or message us on Messenger: https://m.me/114908233392569"));
+        status.textContent = T("Sending…");
         fetch("https://formsubmit.co/Ryan@ryansellsinsurance.com", { method: "POST", body: fd, headers: { "Accept": "application/json" } })
-          .then(function (r) { if (!r.ok) throw new Error("send failed"); status.textContent = "Sent — check your inbox for your report."; })
-          .catch(function () { status.textContent = "Could not send. Try again, or message us on Messenger."; });
+          .then(function (r) { if (!r.ok) throw new Error("send failed"); status.textContent = T("Sent — check your inbox for your report."); })
+          .catch(function () { status.textContent = T("Could not send. Try again, or message us on Messenger."); });
       });
     }
     out.style.display = "block";
