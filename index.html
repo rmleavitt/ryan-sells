@@ -438,7 +438,7 @@
   <div class="utility">
     <div class="wrap">
       <span>Tow Truck Insurance Without the Runaround</span>
-      <span>Licensed in all 50 states</span>
+      <span>Typically responds within 15 minutes</span>
     </div>
   </div>
 
@@ -471,7 +471,7 @@
       <div class="hero-grid">
         <div class="hero-copy">
           <p class="tag">Hi, I'm Ryan.</p>
-          <h1 id="hero-title">Your trucks work hard. <em>Your insurance should keep up.</em></h1>
+          <h1 id="hero-title">Tow truck insurance, from someone who knows towing.</h1>
           <p>I help tow operators protect their wreckers, rollbacks, and roadside fleets — without making you explain your business to a generalist.</p>
           <div class="hero-actions">
             <a class="button messenger" href="https://m.me/114908233392569">
@@ -486,9 +486,9 @@
             <p class="cta-expectation">Takes 30 seconds — we'll call you back shortly.</p>
           </div>
           <p class="hero-tool-link">Not sure what your state requires? <a href="/requirements.html">Check your state's tow insurance minimums &rarr;</a></p>
-          <p class="hero-trust"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 20 6v6c0 5.3-3.3 8.2-8 9.5C7.3 20.2 4 17.3 4 12V6Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg><span class="hero-trust-label">Licensed in all 50 states</span></p>
+          <p class="hero-trust"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 20 6v6c0 5.3-3.3 8.2-8 9.5C7.3 20.2 4 17.3 4 12V6Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg><span class="hero-trust-label">Talk to a real specialist — not a call center</span></p>
           <div class="proof-row" aria-label="Service highlights">
-            <span class="proof"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg> All 50 states</span>
+            <span class="proof"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg> New towing businesses welcome</span>
             <span class="proof"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg> One-truck to multi-state fleets</span>
             <span class="proof"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg> Towing-focused guidance</span>
             <span class="proof"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4 4L19 6"/></svg> Backed by a Top 40 U.S. insurance agency</span>
@@ -712,6 +712,7 @@
         "Hi, I'm Ryan.": "Hola, soy Ryan.",
         "Your trucks work hard.": "Tus camiones trabajan duro.",
         "Your insurance should keep up.": "Tu seguro debe estar a la altura.",
+        "Tow truck insurance, from someone who knows towing.": "Seguro para grúas, de alguien que conoce el negocio de las grúas.",
         "I help tow operators protect their wreckers, rollbacks, and roadside fleets — without making you explain your business to a generalist.": "Ayudo a los operadores de grúas a proteger sus grúas, plataformas y flotas de asistencia en carretera — sin que tengas que explicarle tu negocio a un generalista.",
         "Request a Call": "Solicitar una Llamada",
         "Your name": "Tu nombre",
@@ -727,6 +728,7 @@
         "Licensed in All 50 States": "Autorizado en los 50 estados",
         "Towing Insurance Specialists": "Especialistas en seguros para grúas",
         "All 50 states": "Los 50 estados",
+        "New towing businesses welcome": "Nuevas empresas de grúas bienvenidas",
         "One-truck to multi-state fleets": "Desde un camión hasta flotas multiestatales",
         "Towing-focused guidance": "Asesoría especializada en grúas",
         "Backed by a Top 40 U.S. insurance agency": "Respaldado por una agencia de seguros Top 40 en EE. UU.",
@@ -829,7 +831,7 @@
       function setLanguage(language, updateAddress) {
         document.documentElement.lang = language;
         textEntries.forEach(function (entry) { entry.node.nodeValue = translatedText(entry, language); });
-        document.querySelector('.hero-trust-label').textContent = language === 'es' ? 'Autorizado en los 50 estados' : 'Licensed in all 50 states';
+        document.querySelector('.hero-trust-label').textContent = language === 'es' ? 'Habla con un especialista de verdad — no con un centro de llamadas' : 'Talk to a real specialist — not a call center';
         attributeEntries.forEach(function (entry) {
           entry.element.setAttribute(entry.attribute, language === 'es' ? translations[entry.key] : entry.key);
         });
