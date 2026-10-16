@@ -119,7 +119,6 @@
     <a class="back" href="/">&larr; Back to Ryan Sells Insurance</a>
     <h1>Police Rotation <span>Readiness Checklist</span></h1>
     <p class="sub">Check off what you already have. We&rsquo;ll show what&rsquo;s still missing before you apply &mdash; so the agency doesn&rsquo;t find the gaps first.</p>
-    <p class="tool-link"><a href="/requirements.html">Check your state&rsquo;s tow insurance minimums &rarr;</a><br /><a href="/coverage-quiz.html">What coverage do I need? Take the quiz &rarr;</a></p>
 
     <div class="card">
       <div class="group-title">Insurance</div>
@@ -311,6 +310,7 @@
     }
     html += '<p class="cta-alt">' + T('Or') + ' <a href="/#quote">' + T('get a quote') + '</a>' + T(' — tell us what your operation does and we’ll build the policy to match.') + '</p>';
     html += '<div class="email-box"><strong>' + T('Want this in your inbox?') + '</strong><p class="note">' + T('Optional — we’ll send this summary to your inbox and follow up with a quote.') + '</p><form id="email-form"><input type="email" id="email-addr" placeholder="' + T('Your email') + '" required /><button class="btn" type="submit">' + T('Email my report') + '</button><p class="hint" id="email-status"></p></form></div>';
+    html += '<p class="tool-link"><a href="/requirements.html">' + T('Check your state’s tow insurance minimums →') + '</a><br /><a href="/coverage-quiz.html">' + T('What coverage do I need? Take the quiz →') + '</a></p>';
 
     // Plain-text summary of exactly what was shown, for the email.
     currentSummary = "Your police rotation readiness report — Ryan Sells Insurance\n\nReady (" + checked.length + " of " + TOTAL + "):\n";
