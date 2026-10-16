@@ -55,6 +55,8 @@
     a.msg-btn .messenger-icon { width: 20px; height: 20px; vertical-align: -4px; margin-right: 8px; fill: currentColor; }
     a.back-link { display: inline-block; margin-top: 24px; color: #d7dee0; background: none; text-decoration: underline; font-size: 15px; font-weight: 400; padding: 0; }
     .msg-note { font-size: 15px; color: #d7dee0; margin-top: 10px; }
+    .phone-line { font-size: 15px; color: #d7dee0; margin-top: 10px; }
+    .phone-line a { color: #fff; text-decoration: underline; }
     .want-faster { margin-top: 24px; }
   </style>
 </head>
@@ -67,7 +69,24 @@
     <a class="msg-btn" href="https://m.me/114908233392569"><svg class="messenger-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0Zm1.193 14.963-3.056-3.259-5.963 3.259L10.733 8l3.13 3.259L19.754 8l-6.561 6.963Z"/></svg>Message us on Messenger</a>
     <p class="msg-note">Typically responds within 15 minutes.</p>
     <p>¿Prefieres escribirnos? Envíanos un mensaje en Messenger.</p>
+    <p class="phone-line">Prefer to talk now? <a href="tel:+18473930234">Call (847) 393-0234</a> · <a href="sms:+18473930234">Text (847) 393-0234</a></p>
+    <p class="phone-line">¿Prefieres hablar ahora? <a href="tel:+18473930234">Llama al (847) 393-0234</a> · <a href="sms:+18473930234">Escribe al (847) 393-0234</a></p>
     <a class="back-link" href="/">← Back to Ryan Sells Insurance</a>
   </main>
+  <script>
+    document.addEventListener('click', function (e) {
+      var t = e.target;
+      if (!t || !t.closest) return;
+      if (t.closest('a[href^="tel:"]')) {
+        if (window.fbq) fbq('track', 'Contact');
+        if (window.gtag) gtag('event', 'click_to_call');
+        return;
+      }
+      if (t.closest('a[href^="sms:"]')) {
+        if (window.fbq) fbq('track', 'Contact');
+        if (window.gtag) gtag('event', 'click_to_text');
+      }
+    });
+  </script>
 </body>
 </html>
