@@ -117,7 +117,6 @@
     <a class="back" href="/">&larr; Back to Ryan Sells Insurance</a>
     <h1>What Coverage <span>Do I Need?</span></h1>
     <p class="sub">Tell us what your operation does. We&rsquo;ll show the coverages that fit &mdash; and why.</p>
-    <p class="tool-link"><a href="/requirements.html">Check your state&rsquo;s tow insurance minimums &rarr;</a><br /><a href="/workers-comp.html">Check your state&rsquo;s workers&rsquo; comp requirements &rarr;</a></p>
 
     <div class="card">
       <div class="group-title">What do you do? (check all that apply)</div>
@@ -274,6 +273,7 @@
     html += '<p class="cta-alt">' + T('Or') + ' <a href="/#quote">' + T('get a quote for this coverage') + '</a>' + T(' — tell us what your operation does and we’ll build the policy to match.') + '</p>';
     html += '<div class="email-box"><strong>' + T('Want this in your inbox?') + '</strong><p class="note">' + T('Optional — we’ll send this summary to your inbox and follow up with a quote.') + '</p><form id="email-form"><input type="email" id="email-addr" placeholder="' + T('Your email') + '" required /><button class="btn" type="submit">' + T('Email my results') + '</button><p class="hint" id="email-status"></p></form></div>';
     html += '<p class="note">' + T('Next step: ') + '<a href="/requirements.html">' + T('check your state’s minimum limits') + '</a>' + T(' for the coverages above.') + '</p>';
+    html += '<p class="tool-link"><a href="/workers-comp.html">' + T('Check your state’s workers’ comp requirements →') + '</a></p>';
 
     // Plain-text summary of exactly what was shown, for the email.
     currentSummary = "Your coverage quiz results — Ryan Sells Insurance\n\nWhat you told us:\n";
