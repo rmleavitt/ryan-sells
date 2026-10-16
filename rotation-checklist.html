@@ -115,6 +115,8 @@
     .btn-msg svg { width: 20px; height: 20px; flex: 0 0 auto; }
     .messenger-icon { fill: currentColor; stroke: none; }
     .msg-sub { text-align: center; color: #9fb0b5; font-size: 14px; margin: 8px 0 0; }
+    .phone-line { text-align: center; color: #9fb0b5; font-size: 14px; margin: 14px 0 0; }
+    .phone-line a { color: #ffffff; text-decoration: underline; text-underline-offset: 2px; }
     .msg-cta { margin-top: 18px; }
   </style>
 </head>
@@ -223,6 +225,9 @@
     "Send me your list and I'll tell you what each missing item costs to fix.": "Envíame tu lista y te diré lo que cuesta corregir cada punto faltante.",
     "Message Ryan — get the policy that gets your application approved.": "Escríbele a Ryan — consigue la póliza que apruebe tu solicitud.",
     "Typically responds within 15 minutes": "Normalmente responde en 15 minutos",
+    "Prefer to talk now?": "¿Prefieres hablar ahora?",
+    "Call (847) 393-0234": "Llama al (847) 393-0234",
+    "Text (847) 393-0234": "Escribe al (847) 393-0234",
     "Sending…": "Enviando…",
     "Sent — check your inbox for your report.": "Enviado — revisa tu bandeja de entrada para ver tu informe.",
     "Could not send. Try again, or message us on Messenger.": "No se pudo enviar. Inténtalo de nuevo o escríbenos por Messenger.",
@@ -315,6 +320,7 @@
     }
     html += '<p class="cta-alt">' + T('Or') + ' <a href="/#quote">' + T('get a quote') + '</a>' + T(' — tell us what your operation does and we’ll build the policy to match.') + '</p>';
     html += '<div class="email-box"><strong>' + T('Want this in your inbox?') + '</strong><p class="note">' + T('Optional — we’ll send this summary to your inbox and follow up with a quote.') + '</p><form id="email-form"><input type="email" id="email-addr" placeholder="' + T('Your email') + '" required /><button class="btn" type="submit">' + T('Email my report') + '</button><p class="hint" id="email-status"></p></form></div>';
+    html += '<p class="phone-line">' + T('Prefer to talk now?') + ' <a href="tel:+18473930234">' + T('Call (847) 393-0234') + '</a> · <a href="sms:+18473930234">' + T('Text (847) 393-0234') + '</a></p>';
     html += '<p class="tool-link"><a href="/requirements.html">' + T('Check your state’s tow insurance minimums →') + '</a><br /><a href="/coverage-quiz.html">' + T('What coverage do I need? Take the quiz →') + '</a></p>';
 
     // Plain-text summary of exactly what was shown, for the email.
@@ -348,6 +354,17 @@
     }
     out.style.display = "block";
     out.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  document.addEventListener('click', function (e) {
+    var t = e.target && e.target.closest ? e.target.closest('a[href^="tel:"]') : null;
+    var s = !t && e.target && e.target.closest ? e.target.closest('a[href^="sms:"]') : null;
+    if (t) {
+      if (window.fbq) fbq('track', 'Contact');
+      if (window.gtag) gtag('event', 'click_to_call');
+    } else if (s) {
+      if (window.fbq) fbq('track', 'Contact');
+      if (window.gtag) gtag('event', 'click_to_text');
+    }
   });
   </script>
 </body>
