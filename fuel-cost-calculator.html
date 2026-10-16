@@ -103,10 +103,17 @@
     .disclaimer { color: #9fb0b5; font-size: 13.5px; line-height: 1.55; margin-top: 26px; }
     .hint { color: #9fb0b5; font-size: 14px; margin-top: 6px; }
     .cta-alt { text-align: center; margin: 14px 0 22px; color: #d7dee0; font-size: 15px; }
+    .lang-toggle { text-align: right; margin-bottom: 8px; font-size: 14px; }
+    .lang-toggle a { color: #d7dee0; text-decoration: none; padding: 4px 10px; border: 1px solid #2a383e; border-radius: 6px; display: inline-block; }
+    .lang-toggle a.active { color: #f5be19; border-color: #f5be19; font-weight: 700; }
+    .btn-msg { display: block; text-align: center; background: #0866ff; color: #ffffff; text-decoration: none; border-radius: 8px; padding: 15px; font-size: 17px; font-weight: 800; margin-top: 18px; }
+    .msg-sub { text-align: center; color: #9fb0b5; font-size: 14px; margin: 8px 0 0; }
+    .msg-cta { margin-top: 18px; }
   </style>
 </head>
 <body>
   <div class="wrap">
+    <div class="lang-toggle"><a href="?lang=en" id="lang-en">EN</a> <a href="?lang=es" id="lang-es">ES</a></div>
     <a class="back" href="/">&larr; Back to Ryan Sells Insurance</a>
     <h1>Fuel Cost &amp; <span>Cost Per Tow</span></h1>
     <p class="sub">Diesel is your biggest variable cost. Enter your real numbers and see what each tow actually costs you in fuel.</p>
@@ -136,6 +143,75 @@
   </div>
 
   <script>
+  var LANG = (new URLSearchParams(window.location.search).get('lang') === 'es') ? 'es' : 'en';
+  var ES = {
+    "← Back to Ryan Sells Insurance": "← Volver a Ryan Sells Insurance",
+    "Fuel Cost &": "Costo de combustible y",
+    "Cost Per Tow": "costo por remolque",
+    "Diesel is your biggest variable cost. Enter your real numbers and see what each tow actually costs you in fuel.": "El diésel es tu mayor costo variable. Ingresa tus números reales y ve lo que cada remolque te cuesta realmente en combustible.",
+    "Check your state’s tow insurance minimums →": "Consulta los mínimos de seguro para grúas de tu estado →",
+    "What coverage do I need? Take the quiz →": "¿Qué cobertura necesito? Haz el quiz →",
+    "Diesel price per gallon ($)": "Precio del diésel por galón ($)",
+    "The EIA national average was $6.18/gal for the week ending Oct 12, 2026 — enter your local pump price for your real number.": "El promedio nacional de la EIA fue $6.18/gal para la semana que terminó el 12 de octubre de 2026 — ingresa el precio de tu gasolinera local para tu número real.",
+    "Your truck’s MPG": "El MPG de tu camión",
+    "Light-duty wreckers typically run 12–18 mpg; heavy-duty 6–10. Use your truck’s real number if you know it.": "Las grúas ligeras suelen rendir 12–18 mpg; las pesadas 6–10. Usa el número real de tu camión si lo conoces.",
+    "Miles driven per month": "Millas recorridas por mes",
+    "Tows completed per month": "Remolques completados por mes",
+    "Calculate my fuel cost": "Calcular mi costo de combustible",
+    "Informational only — not legal advice and not a quote. Results are estimates from the numbers you enter.": "Solo informativo — no es asesoría legal ni cotización. Los resultados son estimaciones basadas en los números que ingresas.",
+    "e.g. 6.18": "p. ej. 6.18",
+    "e.g. 10": "p. ej. 10",
+    "e.g. 4000": "p. ej. 4000",
+    "e.g. 100": "p. ej. 100",
+    "Your": "Tus",
+    "fuel numbers": "números de combustible",
+    "Fuel cost per mile": "Costo de combustible por milla",
+    "Gallons per month": "Galones por mes",
+    "Monthly fuel cost": "Costo mensual de combustible",
+    "Fuel cost per tow": "Costo de combustible por remolque",
+    "Annual fuel cost": "Costo anual de combustible",
+    "Every dollar of fuel per tow comes straight off the job. If your per-tow fuel cost is climbing, it is worth checking whether your rates have kept up — and whether your insurance is still priced for the operation you run today.": "Cada dólar de combustible por remolque sale directo del trabajo. Si tu costo de combustible por remolque está subiendo, vale la pena revisar si tus tarifas han subido también — y si tu seguro sigue con el precio adecuado para la operación que tienes hoy.",
+    "Want this in your inbox?": "¿Quieres esto en tu bandeja de entrada?",
+    "Optional — we’ll send this summary to your inbox and follow up with a quote.": "Opcional — te enviaremos este resumen a tu correo y daremos seguimiento con una cotización.",
+    "Your email": "Tu correo electrónico",
+    "Email my results": "Enviarme mis resultados",
+    "Or": "O",
+    "get a quote": "consigue una cotización",
+    " — tell us about your operation and we’ll build the policy to match.": " — cuéntanos sobre tu operación y diseñaremos la póliza a tu medida.",
+    "Message Ryan — check whether your policy still fits the operation you're running": "Escríbele a Ryan — revisa si tu póliza aún encaja con la operación que tienes",
+    "Fuel up, rates up — your policy should keep up.": "Si sube el combustible, que suban tus tarifas — tu póliza debería mantenerse al día.",
+    "Typically responds within 15 minutes": "Normalmente responde en 15 minutos",
+    "Sending…": "Enviando…",
+    "Sent — check your inbox for your results.": "Enviado — revisa tu bandeja de entrada para ver tus resultados.",
+    "Could not send. Try again, or message us on Messenger.": "No se pudo enviar. Inténtalo de nuevo o escríbenos por Messenger.",
+    "Fuel cost calculator: your results": "Calculadora de combustible: tus resultados",
+    "\n\nWant a quote built around your operation? Reply to this email or message us on Messenger: https://m.me/114908233392569": "\n\n¿Quieres una cotización diseñada para tu operación? Responde a este correo o escríbenos por Messenger: https://m.me/114908233392569",
+    "Tow Truck Fuel Cost & Cost-Per-Tow Calculator — Ryan Sells Insurance": "Calculadora de costo de combustible y costo por remolque para grúas — Ryan Sells Insurance"
+  };
+  function T(s) { return (LANG === 'es' && ES[s]) ? ES[s] : s; }
+  function walkTranslate(root) {
+    if (LANG !== 'es') return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    var node, nodes = [];
+    while ((node = walker.nextNode())) {
+      var tag = node.parentNode && node.parentNode.tagName;
+      if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') continue;
+      nodes.push(node);
+    }
+    nodes.forEach(function (n) {
+      var v = n.nodeValue, key = v.trim();
+      if (key && ES[key]) n.nodeValue = v.replace(key, ES[key]);
+    });
+  }
+  if (LANG === 'es') {
+    document.documentElement.lang = 'es';
+    document.title = T("Tow Truck Fuel Cost & Cost-Per-Tow Calculator — Ryan Sells Insurance");
+    document.getElementById('lang-es').className = 'active';
+    [['price','e.g. 6.18'],['mpg','e.g. 10'],['miles','e.g. 4000'],['tows','e.g. 100']].forEach(function (p) { var el = document.getElementById(p[0]); if (el) el.placeholder = T(p[1]); });
+  } else {
+    document.getElementById('lang-en').className = 'active';
+  }
+  walkTranslate(document.body);
   var currentSummary = "";
 
   function money(n) {
@@ -159,17 +235,18 @@
 
     var out = document.getElementById("results");
     var html = "";
-    html += '<h2>Your <span>fuel numbers</span></h2>';
+    html += '<h2>' + T('Your') + ' <span>' + T('fuel numbers') + '</span></h2>';
     html += '<div class="card">';
-    html += '<div class="row"><div class="k">Fuel cost per mile</div><div class="v">' + money(perMile) + '</div></div>';
-    html += '<div class="row"><div class="k">Gallons per month</div><div class="v">' + gallons.toLocaleString("en-US", { maximumFractionDigits: 0 }) + ' gal</div></div>';
-    html += '<div class="row"><div class="k">Monthly fuel cost</div><div class="v">' + money(monthly) + '</div></div>';
-    html += '<div class="row big"><div class="k">Fuel cost per tow</div><div class="v">' + money(perTow) + '</div></div>';
-    html += '<div class="row"><div class="k">Annual fuel cost</div><div class="v">' + money(annual) + '</div></div>';
+    html += '<div class="row"><div class="k">' + T('Fuel cost per mile') + '</div><div class="v">' + money(perMile) + '</div></div>';
+    html += '<div class="row"><div class="k">' + T('Gallons per month') + '</div><div class="v">' + gallons.toLocaleString("en-US", { maximumFractionDigits: 0 }) + ' gal</div></div>';
+    html += '<div class="row"><div class="k">' + T('Monthly fuel cost') + '</div><div class="v">' + money(monthly) + '</div></div>';
+    html += '<div class="row big"><div class="k">' + T('Fuel cost per tow') + '</div><div class="v">' + money(perTow) + '</div></div>';
+    html += '<div class="row"><div class="k">' + T('Annual fuel cost') + '</div><div class="v">' + money(annual) + '</div></div>';
     html += '</div>';
-    html += '<p class="note">Every dollar of fuel per tow comes straight off the job. If your per-tow fuel cost is climbing, it is worth checking whether your rates have kept up &mdash; and whether your insurance is still priced for the operation you run today.</p>';
-    html += '<div class="email-box"><strong>Email me these results</strong><p class="note">Optional &mdash; we&rsquo;ll send this summary to your inbox and follow up with a quote.</p><form id="email-form"><input type="email" id="email-addr" placeholder="Your email" required /><button class="btn" type="submit">Email my results</button><p class="hint" id="email-status"></p></form></div>';
-    html += '<p class="cta-alt">Or <a href="/#quote">get a quote</a> &mdash; tell us about your operation and we&rsquo;ll build the policy to match.</p>';
+    html += '<p class="note">' + T('Every dollar of fuel per tow comes straight off the job. If your per-tow fuel cost is climbing, it is worth checking whether your rates have kept up — and whether your insurance is still priced for the operation you run today.') + '</p>';
+    html += '<div class="msg-cta"><a class="btn-msg" href="https://m.me/114908233392569" target="_blank" rel="noopener">' + T("Message Ryan — check whether your policy still fits the operation you're running") + '</a><p class="msg-sub">' + T('Fuel up, rates up — your policy should keep up.') + '</p><p class="msg-sub">' + T('Typically responds within 15 minutes') + '</p></div>';
+    html += '<p class="cta-alt">' + T('Or') + ' <a href="/#quote">' + T('get a quote') + '</a>' + T(' — tell us about your operation and we’ll build the policy to match.') + '</p>';
+    html += '<div class="email-box"><strong>' + T('Want this in your inbox?') + '</strong><p class="note">' + T('Optional — we’ll send this summary to your inbox and follow up with a quote.') + '</p><form id="email-form"><input type="email" id="email-addr" placeholder="' + T('Your email') + '" required /><button class="btn" type="submit">' + T('Email my results') + '</button><p class="hint" id="email-status"></p></form></div>';
 
     // Plain-text summary of exactly what was shown, for the email.
     currentSummary = "Your fuel cost results — Ryan Sells Insurance\n\nYour numbers:\n- Diesel price: $" + price.toFixed(2) + "/gal\n- MPG: " + mpg + "\n- Miles per month: " + miles + "\n- Tows per month: " + tows + "\n\nResults:\n- Fuel cost per mile: " + money(perMile) + "\n- Gallons per month: " + gallons.toLocaleString("en-US", { maximumFractionDigits: 0 }) + " gal\n- Monthly fuel cost: " + money(monthly) + "\n- Fuel cost per tow: " + money(perTow) + "\n- Annual fuel cost: " + money(annual) + "\n\nInformational only — not legal advice or a quote. Get a quote: https://ryansellsinsurance.com/#quote";
@@ -185,15 +262,15 @@
         var fd = new FormData();
         fd.append("email", addr);
         fd.append("results_summary", currentSummary);
-        fd.append("_subject", "Fuel cost calculator: your results");
+        fd.append("_subject", T("Fuel cost calculator: your results"));
         fd.append("_template", "table");
         fd.append("_captcha", "false");
         fd.append("_honey", "");
-        fd.append("_autoresponse", currentSummary + "\n\nWant a quote built around your operation? Reply to this email or message us on Messenger: https://m.me/114908233392569");
-        status.textContent = "Sending…";
+        fd.append("_autoresponse", currentSummary + T("\n\nWant a quote built around your operation? Reply to this email or message us on Messenger: https://m.me/114908233392569"));
+        status.textContent = T("Sending…");
         fetch("https://formsubmit.co/Ryan@ryansellsinsurance.com", { method: "POST", body: fd, headers: { "Accept": "application/json" } })
-          .then(function (r) { if (!r.ok) throw new Error("send failed"); status.textContent = "Sent — check your inbox for your results."; })
-          .catch(function () { status.textContent = "Could not send. Try again, or message us on Messenger."; });
+          .then(function (r) { if (!r.ok) throw new Error("send failed"); status.textContent = T("Sent — check your inbox for your results."); })
+          .catch(function () { status.textContent = T("Could not send. Try again, or message us on Messenger."); });
       });
     }
     out.style.display = "block";
