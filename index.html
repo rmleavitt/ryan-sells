@@ -319,6 +319,8 @@
     .quote-form { background: var(--surface); color: var(--ink); padding: 34px; box-shadow: var(--shadow); }
     .form-title { font-family: "Barlow Condensed", sans-serif; font-size: 31px; font-weight: 800; line-height: 1; margin-bottom: 25px; }
     .quote-request-button { width: 100%; min-height: 58px; }
+        .quote-form .hero-split { display: flex; gap: 10px; width: 100%; margin-bottom: 10px; }
+        .quote-form .hero-split .button { flex: 1; width: auto; min-height: 58px; }
     .quote-form > .cta-expectation { margin: 8px 0 14px; color: var(--ink-soft); text-align: center; }
     .cta-reassurance { margin: 9px 0 0; color: var(--ink-soft); font-size: 13px; text-align: center; }
     .fields { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
@@ -602,6 +604,10 @@
         </div>
 
         <div class="quote-form">
+          <div class="hero-split">
+            <a class="button" href="sms:+18473930234">Text Now</a>
+            <a class="button outline" href="tel:+18473930234">Call Now</a>
+          </div>
           <a class="button messenger quote-request-button" href="https://m.me/114908233392569">
             <svg class="messenger-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0Zm1.193 14.963-3.056-3.259-5.963 3.259L10.733 8l3.13 3.259L19.754 8l-6.561 6.963Z"/></svg>
             Call or message on Messenger
