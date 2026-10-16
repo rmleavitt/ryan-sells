@@ -103,10 +103,17 @@
     .disclaimer { color: #9fb0b5; font-size: 13.5px; line-height: 1.55; margin-top: 26px; }
     .hint { color: #9fb0b5; font-size: 14px; margin-top: 6px; }
     .cta-alt { text-align: center; margin: 14px 0 22px; color: #d7dee0; font-size: 15px; }
+    .lang-toggle { text-align: right; margin-bottom: 8px; font-size: 14px; }
+    .lang-toggle a { color: #d7dee0; text-decoration: none; padding: 4px 10px; border: 1px solid #2a383e; border-radius: 6px; display: inline-block; }
+    .lang-toggle a.active { color: #f5be19; border-color: #f5be19; font-weight: 700; }
+    .btn-msg { display: block; text-align: center; background: #0866ff; color: #ffffff; text-decoration: none; border-radius: 8px; padding: 15px; font-size: 17px; font-weight: 800; margin-top: 18px; }
+    .msg-sub { text-align: center; color: #9fb0b5; font-size: 14px; margin: 8px 0 0; }
+    .msg-cta { margin-top: 18px; }
   </style>
 </head>
 <body>
   <div class="wrap">
+    <div class="lang-toggle"><a href="?lang=en" id="lang-en">EN</a> <a href="?lang=es" id="lang-es">ES</a></div>
     <a class="back" href="/">&larr; Back to Ryan Sells Insurance</a>
     <h1>What Coverage <span>Do I Need?</span></h1>
     <p class="sub">Tell us what your operation does. We&rsquo;ll show the coverages that fit &mdash; and why.</p>
@@ -135,6 +142,88 @@
   </div>
 
   <script>
+  var LANG = (new URLSearchParams(window.location.search).get('lang') === 'es') ? 'es' : 'en';
+  var ES = {
+    "← Back to Ryan Sells Insurance": "← Volver a Ryan Sells Insurance",
+    "What Coverage": "¿Qué cobertura",
+    "Do I Need?": "necesito?",
+    "Tell us what your operation does. We’ll show the coverages that fit — and why.": "Dinos qué hace tu operación. Te mostraremos las coberturas que encajan — y por qué.",
+    "Check your state’s tow insurance minimums →": "Consulta los mínimos de seguro para grúas de tu estado →",
+    "Check your state’s workers’ comp requirements →": "Consulta los requisitos de compensación laboral de tu estado →",
+    "What do you do? (check all that apply)": "¿Qué haces? (marca todas las que apliquen)",
+    "Light-duty towing — cars, SUVs, pickups": "Remolque ligero — autos, SUV, pickups",
+    "Heavy-duty towing — semis, buses, RVs": "Remolque pesado — semis, autobuses, RV",
+    "Repossession (repo)": "Reposesión (repo)",
+    "Police rotation / non-consensual towing": "Rotación policial / remolque no consensual",
+    "Motor club work (AAA, Agero, etc.)": "Trabajo para clubes de asistencia (AAA, Agero, etc.)",
+    "Roadside assistance only — no towing (jump starts, lockouts, tire changes)": "Solo asistencia en carretera — sin remolque (arranque con cables, aperturas, cambio de llantas)",
+    "About your operation": "Sobre tu operación",
+    "I store vehicles — impound lot, storage, or holding vehicles": "Almaceno vehículos — corralón, almacenamiento o retención de vehículos",
+    "I transport vehicles for others — car hauling for dealers, auctions, customers": "Transporto vehículos para otros — transporte de autos para concesionarios, subastas, clientes",
+    "I have employees — drivers, helpers, dispatchers": "Tengo empleados — conductores, ayudantes, despachadores",
+    "Show my coverages": "Mostrar mis coberturas",
+    "Informational only — not legal advice and not a quote. Coverage needs vary by state, carrier, and operation — confirm the exact coverages and limits with your agent before you buy.": "Solo informativo — no es asesoría legal ni cotización. Las necesidades de cobertura varían por estado, aseguradora y operación — confirma las coberturas y límites exactos con tu agente antes de comprar.",
+    "Your": "Tus",
+    "recommended coverages": "coberturas recomendadas",
+    "Commercial Auto Liability": "Responsabilidad civil para autos comerciales",
+    "Covers injuries and property damage you cause with your trucks. Every towing operation needs it — and your state sets a minimum.": "Cubre lesiones y daños a la propiedad que causes con tus camiones. Toda operación de remolque la necesita — y tu estado fija un mínimo.",
+    "Physical Damage": "Daños físicos",
+    "Covers your own trucks for collision and comprehensive damage — repairs or replacement when your wrecker is wrecked, stolen, or vandalized.": "Cubre tus propios camiones por daños de colisión y comprensivos — reparación o reemplazo cuando tu grúa se daña, la roban o la vandalizan.",
+    "General Liability": "Responsabilidad civil general",
+    "Covers injuries and property damage from your premises and operations — a customer hurt at your lot, for example. Separate from auto liability.": "Cubre lesiones y daños a la propiedad en tus instalaciones y operaciones — un cliente lesionado en tu lote, por ejemplo. Es aparte de la responsabilidad civil de autos.",
+    "On-Hook (In-Tow)": "On-hook (en remolque)",
+    "Covers vehicles you are towing when they are damaged — a car slipping off the hook, or a collision while in tow. If you tow anything, you need it.": "Cubre los vehículos que estás remolcando cuando se dañan — un auto que se suelta del gancho o una colisión mientras está en remolque. Si remolcas algo, la necesitas.",
+    "Covers customers’ vehicles in your care — stored at your lot or impound — if they are damaged, stolen, or vandalized while in your custody. Police rotation agreements usually require it.": "Cubre los vehículos de tus clientes bajo tu cuidado — almacenados en tu lote o corralón — si se dañan, los roban o los vandalizan mientras están bajo tu custodia. Los acuerdos de rotación policial suelen exigirla.",
+    "Cargo": "Carga",
+    "Covers vehicles or goods you transport for others as freight — for example, hauling cars for dealers or auctions. Different from on-hook, which covers vehicles you are towing.": "Cubre vehículos o mercancías que transportas para otros como carga — por ejemplo, trasladar autos para concesionarios o subastas. Es diferente del on-hook, que cubre vehículos que estás remolcando.",
+    "Workers’ Compensation": "Compensación laboral",
+    "Covers medical costs and lost wages if an employee is hurt on the job. Required in every state except Texas, and tow work is high-risk.": "Cubre gastos médicos y salarios perdidos si un empleado se lesiona en el trabajo. Es obligatoria en todos los estados excepto Texas, y el trabajo de remolque es de alto riesgo.",
+    "Wrongful Repossession / E&O": "Reposesión indebida / E&O",
+    "Covers claims from a repo gone wrong — wrong vehicle, procedural errors, FDCPA claims. General liability does not cover these.": "Cubre reclamos por una reposesión que salió mal — vehículo equivocado, errores de procedimiento, reclamos bajo la FDCPA. La responsabilidad civil general no cubre esto.",
+    "You selected roadside assistance only, with no towing — so on-hook is not on your list. If you ever tow, add on-hook.": "Seleccionaste solo asistencia en carretera, sin remolque — así que el on-hook no está en tu lista. Si alguna vez remolcas, agrega on-hook.",
+    "Want this in your inbox?": "¿Quieres esto en tu bandeja de entrada?",
+    "Optional — we’ll send this summary to your inbox and follow up with a quote.": "Opcional — te enviaremos este resumen a tu correo y daremos seguimiento con una cotización.",
+    "Your email": "Tu correo electrónico",
+    "Email my results": "Enviarme mis resultados",
+    "Or": "O",
+    "get a quote for this coverage": "consigue una cotización para esta cobertura",
+    " — tell us what your operation does and we’ll build the policy to match.": " — dinos qué hace tu operación y diseñaremos la póliza a tu medida.",
+    "Next step: ": "Siguiente paso: ",
+    "check your state’s minimum limits": "consulta los límites mínimos de tu estado",
+    " for the coverages above.": " para las coberturas anteriores.",
+    "Message Ryan — quote me for {LIST} coverage": "Escríbele a Ryan — cotízame cobertura para {LIST}",
+    "Typically responds within 15 minutes": "Normalmente responde en 15 minutos",
+    "Sending…": "Enviando…",
+    "Sent — check your inbox for your results.": "Enviado — revisa tu bandeja de entrada para ver tus resultados.",
+    "Could not send. Try again, or message us on Messenger.": "No se pudo enviar. Inténtalo de nuevo o escríbenos por Messenger.",
+    "Coverage quiz: your recommended coverages": "Quiz de cobertura: tus coberturas recomendadas",
+    "\n\nWant a quote built around these coverages? Reply to this email or message us on Messenger: https://m.me/114908233392569": "\n\n¿Quieres una cotización diseñada para estas coberturas? Responde a este correo o escríbenos por Messenger: https://m.me/114908233392569",
+    "What Tow Truck Insurance Coverage Do I Need? — Ryan Sells Insurance": "¿Qué cobertura de seguro para grúas necesito? — Ryan Sells Insurance"
+  };
+  function T(s) { return (LANG === 'es' && ES[s]) ? ES[s] : s; }
+  function walkTranslate(root) {
+    if (LANG !== 'es') return;
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    var node, nodes = [];
+    while ((node = walker.nextNode())) {
+      var tag = node.parentNode && node.parentNode.tagName;
+      if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT') continue;
+      nodes.push(node);
+    }
+    nodes.forEach(function (n) {
+      var v = n.nodeValue, key = v.trim();
+      if (key && ES[key]) n.nodeValue = v.replace(key, ES[key]);
+    });
+  }
+  if (LANG === 'es') {
+    document.documentElement.lang = 'es';
+    document.title = T("What Tow Truck Insurance Coverage Do I Need? — Ryan Sells Insurance");
+    document.getElementById('lang-es').className = 'active';
+  } else {
+    document.getElementById('lang-en').className = 'active';
+  }
+  walkTranslate(document.body);
+  var SHORT = {"light": ["light-duty", "grúa ligera"], "heavy": ["heavy-duty", "grúa pesada"], "repo": ["repo", "repo"], "rotation": ["rotation", "rotación"], "motor": ["motor club", "club de asistencia"], "roadside": ["roadside", "asistencia en carretera"], "lot": ["storage", "almacenamiento"], "haul": ["car hauling", "transporte de vehículos"], "employees": ["employees", "empleados"]};
   var LABELS = {
     "light": "Light-duty towing",
     "heavy": "Heavy-duty towing",
@@ -166,23 +255,25 @@
     var out = document.getElementById("results");
     var html = "";
 
-    html += '<h2>Your <span>recommended coverages</span></h2>';
+    html += '<h2>' + T('Your') + ' <span>' + T('recommended coverages') + '</span></h2>';
     html += '<div class="card">';
     var chosen = [];
     COVERAGES.forEach(function (c) {
       var show = c.always || c.needs.some(function (v) { return checked.indexOf(v) !== -1; });
       if (show) {
         chosen.push(c);
-        html += '<div class="cov"><b>' + c.name + '</b><p>' + c.why + '</p></div>';
+        html += '<div class="cov"><b>' + T(c.name) + '</b><p>' + T(c.why) + '</p></div>';
       }
     });
     html += '</div>';
     if (checked.indexOf("roadside") !== -1 && !towing) {
-      html += '<p class="note">You selected roadside assistance only, with no towing — so on-hook is not on your list. If you ever tow, add on-hook.</p>';
+      html += '<p class="note">' + T('You selected roadside assistance only, with no towing — so on-hook is not on your list. If you ever tow, add on-hook.') + '</p>';
     }
-    html += '<div class="email-box"><strong>Email me these results</strong><p class="note">Optional — we’ll send this summary to your inbox and follow up with a quote.</p><form id="email-form"><input type="email" id="email-addr" placeholder="Your email" required /><button class="btn" type="submit">Email my results</button><p class="hint" id="email-status"></p></form></div>';
-    html += '<p class="cta-alt">Or <a href="/#quote">get a quote for this coverage</a> — tell us what your operation does and we’ll build the policy to match.</p>';
-    html += '<p class="note">Next step: <a href="/requirements.html">check your state’s minimum limits</a> for the coverages above.</p>';
+    var shortList = checked.map(function (v) { return SHORT[v][LANG === 'es' ? 1 : 0]; }).join(' + ');
+    html += '<div class="msg-cta"><a class="btn-msg" href="https://m.me/114908233392569" target="_blank" rel="noopener">' + T('Message Ryan — quote me for {LIST} coverage').replace('{LIST}', shortList) + '</a><p class="msg-sub">' + T('Typically responds within 15 minutes') + '</p></div>';
+    html += '<p class="cta-alt">' + T('Or') + ' <a href="/#quote">' + T('get a quote for this coverage') + '</a>' + T(' — tell us what your operation does and we’ll build the policy to match.') + '</p>';
+    html += '<div class="email-box"><strong>' + T('Want this in your inbox?') + '</strong><p class="note">' + T('Optional — we’ll send this summary to your inbox and follow up with a quote.') + '</p><form id="email-form"><input type="email" id="email-addr" placeholder="' + T('Your email') + '" required /><button class="btn" type="submit">' + T('Email my results') + '</button><p class="hint" id="email-status"></p></form></div>';
+    html += '<p class="note">' + T('Next step: ') + '<a href="/requirements.html">' + T('check your state’s minimum limits') + '</a>' + T(' for the coverages above.') + '</p>';
 
     // Plain-text summary of exactly what was shown, for the email.
     currentSummary = "Your coverage quiz results — Ryan Sells Insurance\n\nWhat you told us:\n";
@@ -202,15 +293,15 @@
         var fd = new FormData();
         fd.append("email", addr);
         fd.append("results_summary", currentSummary);
-        fd.append("_subject", "Coverage quiz: your recommended coverages");
+        fd.append("_subject", T("Coverage quiz: your recommended coverages"));
         fd.append("_template", "table");
         fd.append("_captcha", "false");
         fd.append("_honey", "");
-        fd.append("_autoresponse", currentSummary + "\n\nWant a quote built around these coverages? Reply to this email or message us on Messenger: https://m.me/114908233392569");
-        status.textContent = "Sending…";
+        fd.append("_autoresponse", currentSummary + T("\n\nWant a quote built around these coverages? Reply to this email or message us on Messenger: https://m.me/114908233392569"));
+        status.textContent = T("Sending…");
         fetch("https://formsubmit.co/Ryan@ryansellsinsurance.com", { method: "POST", body: fd, headers: { "Accept": "application/json" } })
-          .then(function (r) { if (!r.ok) throw new Error("send failed"); status.textContent = "Sent — check your inbox for your results."; })
-          .catch(function () { status.textContent = "Could not send. Try again, or message us on Messenger."; });
+          .then(function (r) { if (!r.ok) throw new Error("send failed"); status.textContent = T("Sent — check your inbox for your results."); })
+          .catch(function () { status.textContent = T("Could not send. Try again, or message us on Messenger."); });
       });
     }
     out.style.display = "block";
