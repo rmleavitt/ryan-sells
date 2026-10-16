@@ -51,6 +51,10 @@
     document.querySelectorAll('a[href="#callback-form"]').forEach(function (el) {
       el.addEventListener('click', function () { if (window.fbq) fbq('trackCustom', 'RequestCallClick'); });
     });
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('a[href^="tel:"]')) { if (window.fbq) fbq('track', 'Contact'); if (window.gtag) gtag('event', 'click_to_call'); }
+      else if (e.target.closest('a[href^="sms:"]')) { if (window.fbq) fbq('track', 'Contact'); if (window.gtag) gtag('event', 'click_to_text'); }
+    });
   });
   </script>
   <script>
@@ -409,7 +413,7 @@
       .footer-grid { flex-direction: column; }
       .footer-links { justify-content: flex-start; }
       .messenger-float { display: none; }
-      body { padding-bottom: calc(168px + env(safe-area-inset-bottom)); }
+      body { padding-bottom: calc(226px + env(safe-area-inset-bottom)); }
       .mobile-quote-bar {
         position: fixed; inset: auto 0 0; z-index: 50;
         display: flex; flex-direction: column; gap: 8px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
@@ -486,7 +490,7 @@
               <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
             <p class="cta-expectation">Takes 30 seconds — we'll call you back shortly.</p>
-            <p class="cta-expectation">Prefer to talk now? <a href="tel:+18473930234">Call or Text (847) 393-0234</a></p>
+            <p class="cta-expectation">Prefer to talk now? <a href="tel:+18473930234">Call (847) 393-0234</a><span aria-hidden="true"> · </span><a href="sms:+18473930234">Text (847) 393-0234</a></p>
           </div>
           <p class="hero-trust"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 20 6v6c0 5.3-3.3 8.2-8 9.5C7.3 20.2 4 17.3 4 12V6Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg><span class="hero-trust-label">Talk to a real specialist — not a call center</span></p>
           <div class="proof-row" aria-label="Service highlights">
@@ -689,6 +693,7 @@
       <svg class="messenger-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0Zm1.193 14.963-3.056-3.259-5.963 3.259L10.733 8l3.13 3.259L19.754 8l-6.561 6.963Z"/></svg>
       Messenger
     </a>
+    <a class="button outline" href="tel:+18473930234">Call (847) 393-0234</a>
     <a class="button outline" href="#callback-form">Request a Call</a>
     <p class="mobile-bar-note">Takes 30 seconds — we'll call you back shortly.</p>
   </div>
@@ -721,6 +726,8 @@
         "Request a Call": "Solicitar una Llamada",
         "Prefer to talk now?": "¿Prefieres hablar ahora?",
         "Call or Text (847) 393-0234": "Llama o escribe al (847) 393-0234",
+        "Call (847) 393-0234": "Llama al (847) 393-0234",
+        "Text (847) 393-0234": "Escribe al (847) 393-0234",
         "Your name": "Tu nombre",
         "Phone": "Teléfono",
         "Number of trucks": "Número de camiones",
