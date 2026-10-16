@@ -96,6 +96,9 @@
   
     .states { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin-top: 6px; }
     .states a { display: block; background: #1d2b31; border: 1px solid #2a383e; border-radius: 8px; padding: 13px 10px; text-align: center; text-decoration: none; font-size: 16px; }
+    .state-filter { width: 100%; background: #1d2b31; border: 1px solid #2a383e; border-radius: 8px; color: #ffffff; padding: 13px 12px; font-size: 16px; margin: 0 0 12px; }
+    .state-filter::placeholder { color: #9fb0b5; }
+    .no-match { color: #d7dee0; font-size: 15px; text-align: center; margin: 12px 0 0; }
   </style>
 </head>
 <body>
@@ -106,6 +109,8 @@
 
     <div class="card">
       <h2>Pick your <span>state</span></h2>
+      <input class="state-filter" type="search" id="state-filter" placeholder="🔍 Find your state…" aria-label="Find your state" autocomplete="off" />
+      <p class="no-match" id="state-no-match" hidden>No states match your search.</p>
       <div class="states">
       <a href="/alabama-tow-truck-insurance.html">Alabama</a>
       <a href="/alaska-tow-truck-insurance.html">Alaska</a>
@@ -173,5 +178,22 @@
 
     <p class="disclaimer">Informational only &mdash; not legal advice and not a quote. Requirements change &mdash; confirm the exact limits with your state DOT / public utilities commission and your rotation agreement before you buy. Minimums are the legal floor, not a recommendation &mdash; most operators carry more.</p>
   </div>
+  <script>
+  (function () {
+    var input = document.getElementById('state-filter');
+    var links = document.querySelectorAll('.states a');
+    var noMatch = document.getElementById('state-no-match');
+    input.addEventListener('input', function () {
+      var q = input.value.trim().toLowerCase();
+      var shown = 0;
+      links.forEach(function (link) {
+        var match = link.textContent.toLowerCase().indexOf(q) !== -1;
+        link.style.display = match ? '' : 'none';
+        if (match) shown++;
+      });
+      noMatch.hidden = shown !== 0;
+    });
+  })();
+  </script>
 </body>
 </html>
