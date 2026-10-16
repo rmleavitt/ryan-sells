@@ -6,6 +6,9 @@
   <title>Police Rotation Checklist for Tow Truck Operators — Ryan Sells Insurance</title>
   <meta name="description" content="Getting on police rotation? Check your readiness — insurance, licenses, equipment, and paperwork — before you apply." />
   <link rel="canonical" href="https://ryansellsinsurance.com/rotation-checklist.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -108,7 +111,9 @@
     .lang-toggle { text-align: right; margin-bottom: 8px; font-size: 14px; }
     .lang-toggle a { color: #d7dee0; text-decoration: none; padding: 4px 10px; border: 1px solid #2a383e; border-radius: 6px; display: inline-block; }
     .lang-toggle a.active { color: #f5be19; border-color: #f5be19; font-weight: 700; }
-    .btn-msg { display: block; text-align: center; background: #0866ff; color: #ffffff; text-decoration: none; border-radius: 8px; padding: 15px; font-size: 17px; font-weight: 800; margin-top: 18px; }
+    .btn-msg { display: flex; align-items: center; justify-content: center; gap: 9px; text-align: center; background: #0866ff; color: #ffffff; text-decoration: none; border-radius: 8px; padding: 15px; font-family: "Barlow", sans-serif; font-size: 17px; font-weight: 800; margin-top: 18px; }
+    .btn-msg svg { width: 20px; height: 20px; flex: 0 0 auto; }
+    .messenger-icon { fill: currentColor; stroke: none; }
     .msg-sub { text-align: center; color: #9fb0b5; font-size: 14px; margin: 8px 0 0; }
     .msg-cta { margin-top: 18px; }
   </style>
@@ -304,9 +309,9 @@
     }
     html += '<p class="note">' + T('Rotation is a local contract, not state law. These are typical terms from real rotation agreements — your agency’s agreement controls. Confirm its exact requirements before you apply.') + '</p>';
     if (!missing.length) {
-      html += '<div class="msg-cta"><a class="btn-msg" href="https://m.me/114908233392569" target="_blank" rel="noopener">' + T('Message Ryan — get the policy that gets your application approved.') + '</a><p class="msg-sub">' + T('Typically responds within 15 minutes') + '</p></div>';
+      html += '<div class="msg-cta"><a class="btn-msg" href="https://m.me/114908233392569" target="_blank" rel="noopener"><svg class="messenger-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0Zm1.193 14.963-3.056-3.259-5.963 3.259L10.733 8l3.13 3.259L19.754 8l-6.561 6.963Z"/></svg>' + T('Message Ryan — get the policy that gets your application approved.') + '</a><p class="msg-sub">' + T('Typically responds within 15 minutes') + '</p></div>';
     } else {
-      html += '<div class="msg-cta"><a class="btn-msg" href="https://m.me/114908233392569" target="_blank" rel="noopener">' + T('Message Ryan — help me close these {N} gaps').replace('{N}', missing.length) + '</a><p class="msg-sub">' + T("Send me your list and I'll tell you what each missing item costs to fix.") + '</p><p class="msg-sub">' + T('Typically responds within 15 minutes') + '</p></div>';
+      html += '<div class="msg-cta"><a class="btn-msg" href="https://m.me/114908233392569" target="_blank" rel="noopener"><svg class="messenger-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0Zm1.193 14.963-3.056-3.259-5.963 3.259L10.733 8l3.13 3.259L19.754 8l-6.561 6.963Z"/></svg>' + T('Message Ryan — help me close these {N} gaps').replace('{N}', missing.length) + '</a><p class="msg-sub">' + T("Send me your list and I'll tell you what each missing item costs to fix.") + '</p><p class="msg-sub">' + T('Typically responds within 15 minutes') + '</p></div>';
     }
     html += '<p class="cta-alt">' + T('Or') + ' <a href="/#quote">' + T('get a quote') + '</a>' + T(' — tell us what your operation does and we’ll build the policy to match.') + '</p>';
     html += '<div class="email-box"><strong>' + T('Want this in your inbox?') + '</strong><p class="note">' + T('Optional — we’ll send this summary to your inbox and follow up with a quote.') + '</p><form id="email-form"><input type="email" id="email-addr" placeholder="' + T('Your email') + '" required /><button class="btn" type="submit">' + T('Email my report') + '</button><p class="hint" id="email-status"></p></form></div>';
