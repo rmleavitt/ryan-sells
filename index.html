@@ -241,6 +241,8 @@
     h1 em { color: var(--signal); font-style: normal; }
     .hero-copy > p { color: #d2dad7; font-size: clamp(18px, 2vw, 22px); max-width: 610px; margin: 26px 0 31px; }
     .hero-actions { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+        .hero-actions .hero-split { display: flex; gap: 10px; width: 100%; }
+        .hero-actions .hero-split .button { flex: 1; width: auto; }
     .hero-trust { display: inline-flex; align-items: center; gap: 7px; margin: 12px 0 0; color: #c7d1cd; font-size: 13px; font-weight: 600; line-height: 1.2; }
     .hero-trust svg { width: 16px; height: 16px; color: var(--signal); flex: 0 0 auto; }
     .cta-expectation { margin: -3px 0 1px; color: #aebbb6; font-size: 12px; font-weight: 600; line-height: 1.25; }
@@ -481,6 +483,10 @@
           <h1 id="hero-title">Tow truck insurance, <em>from someone who knows towing.</em></h1>
           <p>I help tow operators protect their wreckers, rollbacks, and roadside fleets — without making you explain your business to a generalist.</p>
           <div class="hero-actions">
+            <div class="hero-split">
+              <a class="button" href="tel:+18473930234">Call Now</a>
+              <a class="button outline" href="sms:+18473930234">Text Now</a>
+            </div>
             <a class="button messenger" href="https://m.me/114908233392569">
               <svg class="messenger-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0Zm1.193 14.963-3.056-3.259-5.963 3.259L10.733 8l3.13 3.259L19.754 8l-6.561 6.963Z"/></svg>
               Call or message Ryan on Messenger
@@ -491,7 +497,7 @@
               <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
             <p class="cta-expectation">Takes 30 seconds — we'll call you back shortly.</p>
-            <p class="cta-expectation">Prefer to talk now? <a href="tel:+18473930234">Call (847) 393-0234</a><span aria-hidden="true"> · </span><a href="sms:+18473930234">Text (847) 393-0234</a></p>
+            <p class="cta-expectation">A real person responds Monday–Friday, 9:30 AM–5:30 PM Eastern.</p>
           </div>
           <p class="hero-trust"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 20 6v6c0 5.3-3.3 8.2-8 9.5C7.3 20.2 4 17.3 4 12V6Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg><span class="hero-trust-label">Talk to a real specialist — not a call center</span></p>
           <div class="proof-row" aria-label="Service highlights">
@@ -724,15 +730,13 @@
         "I help tow operators protect their wreckers, rollbacks, and roadside fleets — without making you explain your business to a generalist.": "Ayudo a los operadores de grúas a proteger sus grúas, plataformas y flotas de asistencia en carretera — sin que tengas que explicarle tu negocio a un generalista.",
         "Request a Call": "Solicitar una Llamada",
         "Call Now": "Llama ahora", "Text Now": "Envía un texto",
-        "Prefer to talk now?": "¿Prefieres hablar ahora?",
         "Call or Text (847) 393-0234": "Llama o escribe al (847) 393-0234",
-        "Call (847) 393-0234": "Llama al (847) 393-0234",
-        "Text (847) 393-0234": "Escribe al (847) 393-0234",
         "Your name": "Tu nombre",
         "Phone": "Teléfono",
         "Number of trucks": "Número de camiones",
         "Typically responds within 15 minutes": "Normalmente responde en 15 minutos",
         "Takes 30 seconds — we'll call you back shortly.": "Toma 30 segundos — te llamaremos en breve",
+        "A real person responds Monday–Friday, 9:30 AM–5:30 PM Eastern.": "Una persona real responde de lunes a viernes, de 9:30 AM a 5:30 PM, hora del Este.",
         "Not sure what your state requires?": "¿No sabes qué exige tu estado?",
         "Check your state's tow insurance minimums →": "Consulta los mínimos de seguro para grúas de tu estado →",
         "© 2026 Ryan Sells Insurance. All rights reserved.": "© 2026 Ryan Sells Insurance. Todos los derechos reservados.",
