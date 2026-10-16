@@ -89,6 +89,9 @@
     label:first-child { margin-top: 0; }
     input[type="number"] { width: 100%; padding: 13px 12px; font-size: 16px; border-radius: 8px; border: 1px solid #2a383e; background: #0e1519; color: #fff; }
     .btn { display: block; width: 100%; margin-top: 18px; background: #f5be19; color: #0e1519; border: 0; border-radius: 8px; padding: 15px; font-size: 17px; font-weight: 800; cursor: pointer; }
+    .btn-secondary { display: block; width: 100%; margin-top: 10px; background: transparent; color: #f5be19; border: 1px solid #f5be19; border-radius: 8px; padding: 13px; font-size: 16px; font-weight: 700; cursor: pointer; }
+    input.input-error { border-color: #e5484d !important; }
+    .field-error { color: #ff8a8d; font-size: 14px; margin: 6px 0 0; display: none; }
     #results { display: none; }
     #results h2 { font-size: 22px; margin: 22px 0 10px; }
     #results h2 span { color: #f5be19; }
@@ -117,24 +120,27 @@
     <a class="back" href="/">&larr; Back to Ryan Sells Insurance</a>
     <h1>Fuel Cost &amp; <span>Cost Per Tow</span></h1>
     <p class="sub">Diesel is your biggest variable cost. Enter your real numbers and see what each tow actually costs you in fuel.</p>
-    <p class="tool-link"><a href="/requirements.html">Check your state&rsquo;s tow insurance minimums &rarr;</a><br /><a href="/coverage-quiz.html">What coverage do I need? Take the quiz &rarr;</a></p>
-
     <div class="card">
       <label for="price">Diesel price per gallon ($)</label>
       <input type="number" id="price" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 6.18" />
+      <p class="field-error" id="err-price"></p>
       <p class="hint">The EIA national average was $6.18/gal for the week ending Oct 12, 2026 &mdash; enter your local pump price for your real number.</p>
 
       <label for="mpg">Your truck&rsquo;s MPG</label>
       <input type="number" id="mpg" inputmode="decimal" min="0" step="0.1" placeholder="e.g. 10" />
+      <p class="field-error" id="err-mpg"></p>
       <p class="hint">Light-duty wreckers typically run 12&ndash;18 mpg; heavy-duty 6&ndash;10. Use your truck&rsquo;s real number if you know it.</p>
 
       <label for="miles">Miles driven per month</label>
       <input type="number" id="miles" inputmode="numeric" min="0" step="1" placeholder="e.g. 4000" />
+      <p class="field-error" id="err-miles"></p>
 
       <label for="tows">Tows completed per month</label>
       <input type="number" id="tows" inputmode="numeric" min="0" step="1" placeholder="e.g. 100" />
+      <p class="field-error" id="err-tows"></p>
 
       <button class="btn" id="calc">Calculate my fuel cost</button>
+      <button class="btn-secondary" id="quickstart" type="button">Try it with typical numbers</button>
     </div>
 
     <div id="results"></div>
@@ -158,6 +164,11 @@
     "Miles driven per month": "Millas recorridas por mes",
     "Tows completed per month": "Remolques completados por mes",
     "Calculate my fuel cost": "Calcular mi costo de combustible",
+    "Try it with typical numbers": "Pruébalo con números típicos",
+    "Enter your diesel price": "Ingresa el precio de tu diésel",
+    "Enter your MPG": "Ingresa el MPG de tu camión",
+    "Enter your monthly miles": "Ingresa tus millas mensuales",
+    "Enter your monthly tows": "Ingresa tus remolques mensuales",
     "Informational only — not legal advice and not a quote. Results are estimates from the numbers you enter.": "Solo informativo — no es asesoría legal ni cotización. Los resultados son estimaciones basadas en los números que ingresas.",
     "e.g. 6.18": "p. ej. 6.18",
     "e.g. 10": "p. ej. 10",
@@ -218,15 +229,46 @@
     return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   }
 
+  var FIELDS = [
+    { id: 'price', err: 'Enter your diesel price' },
+    { id: 'mpg', err: 'Enter your MPG' },
+    { id: 'miles', err: 'Enter your monthly miles' },
+    { id: 'tows', err: 'Enter your monthly tows' }
+  ];
+  function validateFields() {
+    var firstBad = null;
+    FIELDS.forEach(function (f) {
+      var el = document.getElementById(f.id);
+      var errEl = document.getElementById('err-' + f.id);
+      var ok = parseFloat(el.value) > 0;
+      el.classList.toggle('input-error', !ok);
+      if (errEl) { errEl.textContent = ok ? '' : T(f.err); errEl.style.display = ok ? 'none' : 'block'; }
+      if (!ok && !firstBad) firstBad = el;
+    });
+    return firstBad;
+  }
+  FIELDS.forEach(function (f) {
+    document.getElementById(f.id).addEventListener('input', function () {
+      this.classList.remove('input-error');
+      var errEl = document.getElementById('err-' + f.id);
+      if (errEl) { errEl.textContent = ''; errEl.style.display = 'none'; }
+    });
+  });
+  document.getElementById("quickstart").addEventListener("click", function () {
+    document.getElementById("price").value = "6.18";
+    document.getElementById("mpg").value = "10";
+    document.getElementById("miles").value = "4000";
+    document.getElementById("tows").value = "100";
+    document.getElementById("calc").click();
+  });
+
   document.getElementById("calc").addEventListener("click", function () {
+    var firstBad = validateFields();
+    if (firstBad) { firstBad.focus(); return; }
     var price = parseFloat(document.getElementById("price").value);
     var mpg = parseFloat(document.getElementById("mpg").value);
     var miles = parseFloat(document.getElementById("miles").value);
     var tows = parseFloat(document.getElementById("tows").value);
-    if (!(price > 0) || !(mpg > 0) || !(miles > 0) || !(tows > 0)) {
-      alert("Please enter a number greater than zero in every field.");
-      return;
-    }
     var perMile = price / mpg;
     var gallons = miles / mpg;
     var monthly = gallons * price;
@@ -247,6 +289,7 @@
     html += '<div class="msg-cta"><a class="btn-msg" href="https://m.me/114908233392569" target="_blank" rel="noopener">' + T("Message Ryan — check whether your policy still fits the operation you're running") + '</a><p class="msg-sub">' + T('Fuel up, rates up — your policy should keep up.') + '</p><p class="msg-sub">' + T('Typically responds within 15 minutes') + '</p></div>';
     html += '<p class="cta-alt">' + T('Or') + ' <a href="/#quote">' + T('get a quote') + '</a>' + T(' — tell us about your operation and we’ll build the policy to match.') + '</p>';
     html += '<div class="email-box"><strong>' + T('Want this in your inbox?') + '</strong><p class="note">' + T('Optional — we’ll send this summary to your inbox and follow up with a quote.') + '</p><form id="email-form"><input type="email" id="email-addr" placeholder="' + T('Your email') + '" required /><button class="btn" type="submit">' + T('Email my results') + '</button><p class="hint" id="email-status"></p></form></div>';
+    html += '<p class="tool-link"><a href="/requirements.html">' + T('Check your state’s tow insurance minimums →') + '</a><br /><a href="/coverage-quiz.html">' + T('What coverage do I need? Take the quiz →') + '</a></p>';
 
     // Plain-text summary of exactly what was shown, for the email.
     currentSummary = "Your fuel cost results — Ryan Sells Insurance\n\nYour numbers:\n- Diesel price: $" + price.toFixed(2) + "/gal\n- MPG: " + mpg + "\n- Miles per month: " + miles + "\n- Tows per month: " + tows + "\n\nResults:\n- Fuel cost per mile: " + money(perMile) + "\n- Gallons per month: " + gallons.toLocaleString("en-US", { maximumFractionDigits: 0 }) + " gal\n- Monthly fuel cost: " + money(monthly) + "\n- Fuel cost per tow: " + money(perTow) + "\n- Annual fuel cost: " + money(annual) + "\n\nInformational only — not legal advice or a quote. Get a quote: https://ryansellsinsurance.com/#quote";
