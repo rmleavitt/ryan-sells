@@ -131,7 +131,6 @@
     <a class="back" href="/">&larr; Back to Ryan Sells Insurance</a>
     <h1>Tow Truck Insurance <span>Requirements by State</span></h1>
     <p class="sub">We show the minimums from the law itself — not a generic commercial auto guess — plus what police rotation usually adds.</p>
-    <p class="tool-link"><a href="/workers-comp.html">Also need workers&rsquo; comp? Check your state&rsquo;s workers&rsquo; comp requirements &rarr;</a></p>
 
     <div class="card">
       <label for="state">Your state</label>
@@ -387,6 +386,7 @@
       st.source_urls.forEach(function (u) { html += '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + T('Source →') + '</a>'; });
       html += '</div>';
     }
+    html += '<p class="tool-link"><a href="/workers-comp.html">' + T('Also need workers’ comp? Check your state’s workers’ comp requirements →') + '</a></p>';
 
     // Plain-text summary of exactly what was shown, for the email.
     function txt(v, conf) { return (v == null || v === "") ? (conf === "verified" ? "No statewide minimum — your city/county or rotation agreement may still set one" : "No statewide minimum found — your city/county or rotation agreement may still set one") : String(v); }
