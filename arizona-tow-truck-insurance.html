@@ -86,6 +86,10 @@
     body { margin: 0; background: #0e1519; color: #ffffff; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; padding: 0 0 48px; }
     a { color: #f5be19; }
     .wrap { max-width: 720px; margin: 0 auto; padding: 20px 18px 0; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .topbar .back { margin-bottom: 0; }
+    .language-toggle { background: transparent; border: 1px solid #2a383e; color: #d7dee0; border-radius: 6px; padding: 6px 10px; font-size: 14px; cursor: pointer; flex: 0 0 auto; }
+    .language-toggle [aria-current="true"] { color: #f5be19; font-weight: 700; }
     .back { display: inline-block; margin-bottom: 14px; color: #d7dee0; text-decoration: none; font-size: 15px; }
     h1 { font-size: 30px; line-height: 1.15; margin: 0 0 8px; }
     h1 span { color: #f5be19; }
@@ -97,12 +101,20 @@
     .row:last-child { border-bottom: 0; }
     .row .k { color: #d7dee0; flex: 0 0 42%; }
     .row .v { text-align: right; }
+    .mrow { padding: 13px 0; border-bottom: 1px solid #2a383e; }
+    .mrow:last-child { border-bottom: 0; }
+    .mrow-head { font-size: 17px; line-height: 1.4; }
+    .mrow-label { color: #d7dee0; }
+    .mrow-headline { font-size: 19px; font-weight: 800; color: #ffffff; }
+    .mrow-details { font-size: 14.5px; color: #d7dee0; line-height: 1.55; margin-top: 5px; }
     .note { color: #d7dee0; font-size: 15px; line-height: 1.55; margin: 10px 0 0; }
     .badge { display: inline-block; font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 20px; margin-bottom: 8px; background: #1e4632; color: #7be0a3; }
     .sources { font-size: 14px; line-height: 1.6; color: #d7dee0; word-break: break-word; }
     .sources a { display: block; margin: 4px 0; }
     .cta { text-align: center; margin-top: 24px; }
-    .cta a { display: inline-block; background: #f5be19; color: #0e1519; text-decoration: none; font-weight: 800; padding: 15px 30px; border-radius: 8px; font-size: 17px; }
+    .cta-mid { margin-top: 20px; margin-bottom: 4px; }
+    .cta-head { font-size: 18px; font-weight: 800; margin: 0 0 12px; }
+    .cta .quote-btn { display: inline-block; background: transparent; color: #f5be19; border: 2px solid #f5be19; text-decoration: none; font-weight: 800; padding: 13px 28px; border-radius: 8px; font-size: 17px; margin-top: 12px; }
     .cta .msg { display: block; margin-top: 14px; color: #d7dee0; font-size: 15px; }
     .cta .msg-btn { display: inline-block; background: #0866ff; color: #fff; text-decoration: none; font-weight: 800; padding: 15px 30px; border-radius: 8px; font-size: 17px; margin-top: 12px; }
     .cta .msg-btn:hover { background: #0055d8; }
@@ -113,28 +125,40 @@
 </head>
 <body>
   <div class="wrap">
-    <a class="back" href="/">&larr; Back to Ryan Sells Insurance</a>
-    <h1>Tow Truck Insurance <span>in Arizona</span></h1>
+    <div class="topbar">
+      <a class="back" href="/">&larr; Back to Ryan Sells Insurance</a>
+      <button class="language-toggle" type="button" aria-label="Switch language to Spanish" aria-pressed="false"><span data-language="en" aria-current="true">EN</span><span aria-hidden="true"> / </span><span data-language="es" aria-current="false">ES</span></button>
+    </div>
+    <h1>Tow Truck Insurance <span data-en="in Arizona" data-es="en Arizona">in Arizona</span></h1>
     <p class="sub">Arizona registers tow-truck companies with DPS and requires proof of financial responsibility at registration, with commercial tiers up to $750,000 above 26,000 lbs.</p>
 
     <div class="card">
       <h2>Arizona <span>state minimums</span></h2>
       <span class="badge">Verified from state law</span>
-      <div class="row"><div class="k">Auto liability</div><div class="v">$25,000 per person / $50,000 per accident bodily injury / $15,000 property damage (ARS 28-4009, policies issued/renewed on or after July 1, 2020). Commercial-enterprise vehicles over 20,000 lbs declared gross weight: combined single limit $300,000 at 20,001–26,000 lbs GVW, $750,000 above 26,000 lbs (ARS 28-4032, 28-4033). Tow-truck companies must maintain these minimums per AAC R13-3-801.</div></div>
-      <div class="row"><div class="k">On-hook (in-tow)</div><div class="v">No statewide minimum &mdash; your city/county or rotation agreement may still set one</div></div>
-      <div class="row"><div class="k">Filings</div><div class="v">Tow-truck company registration with DPS under AAC R13-3-801: application must include proof of financial responsibility (insured name, carrier name/address/phone, policy number, expiration date, amount of coverage), submitted in person to the Department; new application within 10 calendar days of any change; per-truck permit decal + identification number (R13-3-901). ARS 28-4034 allows the Department to require certification of financial responsibility. No Form E.</div></div>
+      <div class="mrow"><div class="mrow-head"><span class="mrow-label">Auto liability</span> &mdash; <strong class="mrow-headline">$25,000 per person / $50,000 per accident bodily injury / $15,000 property damage (ARS 28-4009, policies issued/renewed on or after July 1, 2020).</strong></div>
+        <div class="mrow-details">Commercial-enterprise vehicles over 20,000 lbs declared gross weight: combined single limit $300,000 at 20,001–26,000 lbs GVW, $750,000 above 26,000 lbs (ARS 28-4032, 28-4033). Tow-truck companies must maintain these minimums per AAC R13-3-801.</div></div>
+      <div class="mrow"><div class="mrow-head"><span class="mrow-label">On-hook (in-tow)</span> &mdash; <strong class="mrow-headline">No statewide minimum — your city/county or rotation agreement may still set one</strong></div></div>
+      <div class="mrow"><div class="mrow-head"><span class="mrow-label">Filings</span> &mdash; <strong class="mrow-headline">Tow-truck company registration with DPS under AAC R13-3-801: application must include proof of financial responsibility (insured name, carrier name/address/phone, policy number, expiration date, amount of coverage), submitted in person to the Department</strong></div>
+        <div class="mrow-details">new application within 10 calendar days of any change; per-truck permit decal + identification number (R13-3-901). ARS 28-4034 allows the Department to require certification of financial responsibility. No Form E.</div></div>
     </div>
     <p class="note"><strong>Weight / class variation:</strong> Commercial tiers split at 20,000 / 26,000 lbs GVW (28-4033); vehicles at/under 20,000 lbs declared gross weight subject only to the 25/50/15 floor.</p>
     <p class="note">AAC Title 13, Ch. 3 sets no on-hook, garagekeepers, or cargo minimum (full chapter reviewed; zero mentions). HB 2269 (2024) House Engrossed proposed requiring on-hook and garagekeepers insurance for private towing carriers (no dollar amounts), but the enacted ARS 9-499.05 contains no insurance provision. Articles 1–6 of Ch. 3 (including former permit-application rule R13-3-201) expired June 1, 2010; current registration rule is R13-3-801. Cities/towns may regulate private-towing rates under ARS 9-499.05. Verified 2026-10-14: all fields resolved (figure or confirmed absence).</p>
 
+    <div class="cta cta-mid">
+      <p class="cta-head">Got your number? Get a quote built for it.</p>
+      <a class="msg-btn" href="https://m.me/114908233392569"><svg class="messenger-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0Zm1.193 14.963-3.056-3.259-5.963 3.259L10.733 8l3.13 3.259L19.754 8l-6.561 6.963Z"/></svg>Message us on Messenger</a>
+      <span class="msg">Typically responds within 15 minutes.</span>
+      <a class="quote-btn" href="/#quote" data-en="Get a quote for Arizona &rarr;" data-es="Obtener cotización para Arizona &rarr;">Get a quote for Arizona &rarr;</a>
+    </div>
+
     <div class="card">
-      <h2>Workers&rsquo; comp <span>in Arizona</span></h2>
+      <h2>Workers&rsquo; comp <span data-en="in Arizona" data-es="en Arizona">in Arizona</span></h2>
       <div class="row"><div class="k">Required?</div><div class="v">Yes</div></div>
       <div class="row"><div class="k">Trigger</div><div class="v">1+ regularly-employed workers</div></div>
       <div class="row"><div class="k">State fund only?</div><div class="v">No</div></div>
       <p class="note"><strong>Independent-contractor test:</strong> Statutory definition + optional written-agreement presumption</p>
       <p class="note"><strong>Not required doesn&rsquo;t mean not liable:</strong> if you don&rsquo;t carry workers&rsquo; comp &mdash; even where it isn&rsquo;t required for you &mdash; an injured worker may be able to sue you in court instead of being limited to comp benefits, because the exclusive-remedy shield generally depends on having coverage.</p>
-      <p class="note"><a href="/workers-comp.html">See the full workers&rsquo; comp detail for Arizona &rarr;</a></p>
+      <p class="note"><a href="/workers-comp.html" data-en="See the full workers&rsquo; comp detail for Arizona &rarr;" data-es="Ver el detalle completo de compensación laboral para Arizona &rarr;">See the full workers&rsquo; comp detail for Arizona &rarr;</a></p>
     </div>
 
     <div class="card">
@@ -143,14 +167,14 @@
     </div>
 
     <div class="card">
-      <h2>Police rotation <span>in Arizona</span></h2>
+      <h2>Police rotation <span data-en="in Arizona" data-es="en Arizona">in Arizona</span></h2>
       <p class="note">Rotation is a local contract, not state law. Rotation agreements commonly require auto liability around $1,000,000 CSL, on-hook/cargo $50,000&ndash;$100,000, garagekeepers $50,000&ndash;$500,000, and the agency named as additional insured &mdash; check your agency&rsquo;s agreement for its exact terms. <a href="/rotation-checklist.html">Rotation readiness checklist &rarr;</a></p>
     </div>
 
     <div class="cta">
-      <a href="/#quote">Get a quote for Arizona</a>
-      <br /><a class="msg-btn" href="https://m.me/114908233392569"><svg class="messenger-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0Zm1.193 14.963-3.056-3.259-5.963 3.259L10.733 8l3.13 3.259L19.754 8l-6.561 6.963Z"/></svg>Message us on Messenger</a>
+      <a class="msg-btn" href="https://m.me/114908233392569"><svg class="messenger-icon" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 4.975 0 11.111c0 3.497 1.745 6.616 4.472 8.652V24l4.086-2.242c1.09.301 2.246.464 3.442.464 6.627 0 12-4.975 12-11.111S18.627 0 12 0Zm1.193 14.963-3.056-3.259-5.963 3.259L10.733 8l3.13 3.259L19.754 8l-6.561 6.963Z"/></svg>Message us on Messenger</a>
       <span class="msg">Typically responds within 15 minutes.</span>
+      <a class="quote-btn" href="/#quote" data-en="Get a quote for Arizona &rarr;" data-es="Obtener cotización para Arizona &rarr;">Get a quote for Arizona &rarr;</a>
     </div>
 
     <p class="tools">More tools: <a href="/requirements.html">state requirements lookup</a> &middot; <a href="/workers-comp.html">workers&rsquo; comp lookup</a> &middot; <a href="/coverage-quiz.html">coverage quiz</a> &middot; <a href="/fuel-cost-calculator.html">fuel cost calculator</a> &middot; <a href="/rotation-checklist.html">rotation checklist</a></p>
@@ -164,5 +188,62 @@
 
     <p class="disclaimer">Informational only &mdash; not legal advice and not a quote. Requirements change &mdash; confirm the exact limits with your state DOT / public utilities commission and your rotation agreement before you buy. Minimums are the legal floor, not a recommendation &mdash; most operators carry more.</p>
   </div>
+  <script>
+  (function () {
+    var translations = {"← Back to Ryan Sells Insurance": "← Volver a Ryan Sells Insurance", "Tow Truck Insurance": "Seguro para Grúas", "state minimums": "mínimos estatales", "Verified from state law": "Verificado según la ley estatal", "Auto liability": "Responsabilidad civil", "On-hook (in-tow)": "Remolque (en tránsito)", "Garagekeepers": "Vehículos bajo custodia", "Cargo": "Carga", "Filings": "Presentaciones", "Got your number? Get a quote built for it.": "¿Ya tienes tu número? Obtén una cotización para tu operación.", "Message us on Messenger": "Envíanos un mensaje por Messenger", "Typically responds within 15 minutes.": "Normalmente responde en 15 minutos.", "Workers’ comp": "Compensación laboral", "Required?": "¿Obligatorio?", "Trigger": "Umbral", "State fund only?": "¿Solo fondo estatal?", "Independent-contractor test:": "Prueba de contratista independiente:", "Not required doesn’t mean not liable:": "Que no sea obligatorio no significa que no seas responsable:", "if you don’t carry workers’ comp — even where it isn’t required for you — an injured worker may be able to sue you in court instead of being limited to comp benefits, because the exclusive-remedy shield generally depends on having coverage.": "si no tienes compensación laboral — incluso donde no sea obligatoria para ti — un trabajador lesionado podría demandarte en tribunales en lugar de limitarse a los beneficios de compensación, porque la protección de remedio exclusivo generalmente depende de tener cobertura.", "What coverage": "¿Qué cobertura", "do you need?": "necesitas?", "Minimums are the legal floor, not a recommendation — most operators carry more. Your operation (light-duty, heavy-duty, repo, rotation, motor club) decides which coverages fit.": "Los mínimos son el piso legal, no una recomendación — la mayoría de los operadores llevan más. Tu operación (servicio liviano, pesado, repo, rotación, club de asistencia) decide qué coberturas convienen.", "Take the coverage quiz →": "Haz el cuestionario de coberturas →", "Police rotation": "Rotación policial", "Rotation is a local contract, not state law. Rotation agreements commonly require auto liability around $1,000,000 CSL, on-hook/cargo $50,000–$100,000, garagekeepers $50,000–$500,000, and the agency named as additional insured — check your agency’s agreement for its exact terms.": "La rotación es un contrato local, no una ley estatal. Los acuerdos de rotación suelen exigir responsabilidad civil para autos de alrededor de $1,000,000 CSL, remolque/carga $50,000–$100,000, garagekeepers $50,000–$500,000, y que la agencia figure como asegurada adicional — consulta el acuerdo de tu agencia para conocer sus términos exactos.", "Rotation readiness checklist →": "Lista de preparación para rotación →", "More tools:": "Más herramientas:", "state requirements lookup": "consulta de requisitos estatales", "workers’ comp lookup": "consulta de compensación laboral", "coverage quiz": "cuestionario de coberturas", "fuel cost calculator": "calculadora de costo de combustible", "rotation checklist": "lista de rotación", "Sources": "Fuentes", "Source →": "Fuente →", "Informational only — not legal advice and not a quote. Requirements change — confirm the exact limits with your state DOT / public utilities commission and your rotation agreement before you buy. Minimums are the legal floor, not a recommendation — most operators carry more.": "Solo informativo — no es asesoría legal ni una cotización. Los requisitos cambian — confirma los límites exactos con el DOT / comisión de servicios públicos de tu estado y tu acuerdo de rotación antes de comprar. Los mínimos son el piso legal, no una recomendación — la mayoría de los operadores llevan más.", "Weight / class variation:": "Variación por peso / clase:"};
+    var esTitle = "Seguro para Grúas en Arizona — Requisitos, Compensación Laboral y Cobertura | Ryan Sells Insurance";
+    var esDescription = "Requisitos de seguro para grúas en Arizona: responsabilidad mínima, on-hook, registros y compensación laboral — verificados según la ley estatal. Obtén una cotización para tu operación.";
+    var textEntries = [];
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (node) {
+        var parent = node.parentElement;
+        if (!parent || /^(SCRIPT|STYLE|SVG)$/.test(parent.tagName)) return NodeFilter.FILTER_REJECT;
+        var key = node.nodeValue.trim();
+        return translations[key] ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    });
+    var node;
+    while ((node = walker.nextNode())) {
+      textEntries.push({ node: node, key: node.nodeValue.trim() });
+    }
+    var esElements = [];
+    Array.prototype.forEach.call(document.querySelectorAll('[data-es]'), function (element) {
+      esElements.push(element);
+    });
+    var englishTitle = document.title;
+    var englishDescription = document.querySelector('meta[name="description"]').getAttribute('content');
+    var languageButton = document.querySelector('.language-toggle');
+    function translatedText(entry, language) {
+      var original = entry.node.nodeValue;
+      var leading = original.match(/^\s*/)[0];
+      var trailing = original.match(/\s*$/)[0];
+      return leading + (language === 'es' ? translations[entry.key] : entry.key) + trailing;
+    }
+    function setLanguage(language, updateAddress) {
+      document.documentElement.lang = language;
+      textEntries.forEach(function (entry) { entry.node.nodeValue = translatedText(entry, language); });
+      esElements.forEach(function (element) {
+        element.textContent = language === 'es' ? element.getAttribute('data-es') : element.getAttribute('data-en');
+      });
+      document.title = language === 'es' ? esTitle : englishTitle;
+      document.querySelector('meta[name="description"]').setAttribute('content', language === 'es' ? esDescription : englishDescription);
+      languageButton.setAttribute('aria-pressed', language === 'es' ? 'true' : 'false');
+      languageButton.setAttribute('aria-label', language === 'es' ? 'Cambiar el idioma a inglés' : 'Switch language to Spanish');
+      languageButton.querySelector('[data-language="en"]').setAttribute('aria-current', language === 'en' ? 'true' : 'false');
+      languageButton.querySelector('[data-language="es"]').setAttribute('aria-current', language === 'es' ? 'true' : 'false');
+      if (updateAddress && window.history && window.history.replaceState) {
+        var address = new URL(window.location.href);
+        if (language === 'es') address.searchParams.set('lang', 'es');
+        else address.searchParams.delete('lang');
+        window.history.replaceState(null, '', address.pathname + address.search + address.hash);
+      }
+    }
+    var initialLanguage = new URLSearchParams(window.location.search).get('lang') === 'es' ? 'es' : 'en';
+    setLanguage(initialLanguage, false);
+    languageButton.addEventListener('click', function () {
+      setLanguage(document.documentElement.lang === 'es' ? 'en' : 'es', true);
+    });
+  })();
+  </script>
 </body>
 </html>
