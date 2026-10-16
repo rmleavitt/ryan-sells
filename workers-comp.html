@@ -44,6 +44,8 @@
   .btn-msg svg { width: 20px; height: 20px; flex: 0 0 auto; }
   .messenger-icon { fill: currentColor; stroke: none; }
   .msg-sub { text-align: center; color: #9fb0b5; font-size: 14px; margin: 8px 0 0; }
+  .phone-line { text-align: center; color: #9fb0b5; font-size: 14px; margin: 14px 0 0; }
+  .phone-line a { color: #ffffff; text-decoration: underline; text-underline-offset: 2px; }
   .msg-cta { margin-top: 18px; }
   .warning-banner { background: #2b1d07; border: 1px solid #6b5216; border-left: 4px solid #f5be19; padding: 12px 14px; border-radius: 10px; font-size: 0.95rem; margin-bottom: 16px; }
   .empty { color: #9fb0b5; font-style: italic; }
@@ -146,6 +148,9 @@ var ES = {
   "Not required in {STATE}, but you're still liable if a worker is hurt — ask me what it costs to cover that gap.": "No es obligatorio en {STATE}, pero sigues siendo responsable si un trabajador se lesiona — pregúntame cuánto cuesta cubrir ese riesgo.",
   "It depends on your operation in {STATE} — message me and I'll tell you whether you're required to carry it.": "Depende de tu operación en {STATE} — escríbeme y te diré si estás obligado a tenerla.",
   "Typically responds within 15 minutes": "Normalmente responde en 15 minutos",
+  "Prefer to talk now?": "¿Prefieres hablar ahora?",
+  "Call (847) 393-0234": "Llama al (847) 393-0234",
+  "Text (847) 393-0234": "Escribe al (847) 393-0234",
   "Want this in your inbox?": "¿Quieres esto en tu bandeja de entrada?",
   "Optional — we’ll send this summary to your inbox and follow up with a quote.": "Opcional — te enviaremos este resumen a tu correo y daremos seguimiento con una cotización.",
   "Your email": "Tu correo electrónico",
@@ -236,6 +241,7 @@ function render() {
     + msgCta
     + '<p class="cta-alt">' + T('Or') + ' <a href="/#quote">' + T('get a quote for this coverage') + '</a>' + T(' — tell us your state and how many employees you have and we’ll build the policy to match.') + '</p>'
     + '<div class="email-box"><strong>' + T('Want this in your inbox?') + '</strong><p class="note">' + T('Optional — we’ll send this summary to your inbox and follow up with a quote.') + '</p><form id="email-form"><input type="email" id="email-addr" placeholder="' + T('Your email') + '" required /><button class="btn" type="submit">' + T('Email my results') + '</button><p class="hint" id="email-status"></p></form></div>'
+    + '<p class="phone-line">' + T('Prefer to talk now?') + ' <a href="tel:+18473930234">' + T('Call (847) 393-0234') + '</a> · <a href="sms:+18473930234">' + T('Text (847) 393-0234') + '</a></p>'
     + section(T('Workers’ comp detail'), s.detail)
     + section(T('Independent contractor test (workers’ comp)'), s.ic);
   var eform = document.getElementById('email-form');
@@ -263,6 +269,17 @@ function render() {
 sel.addEventListener('change', render);
 render();
 walkTranslate(document.body);
+document.addEventListener('click', function (e) {
+  var t = e.target && e.target.closest ? e.target.closest('a[href^="tel:"]') : null;
+  var s = !t && e.target && e.target.closest ? e.target.closest('a[href^="sms:"]') : null;
+  if (t) {
+    if (window.fbq) fbq('track', 'Contact');
+    if (window.gtag) gtag('event', 'click_to_call');
+  } else if (s) {
+    if (window.fbq) fbq('track', 'Contact');
+    if (window.gtag) gtag('event', 'click_to_text');
+  }
+});
 </script>
 </body>
 </html>
